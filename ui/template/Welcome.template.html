@@ -1,0 +1,24 @@
+{* 显示 当前视图 的消息队列 }
+<msgqueue for="$theView" />
+
+
+<form action="/?c=register" method="post">
+	<div>
+		{* 显示 username 视图窗体 }
+		<widget id="username"/>
+		
+		{* 显示 username 窗体 的消息队列 }
+		<msgqueue for="$theView->widget('username')" />
+	</div>
+	
+	<div>
+		{* 显示 password 视图窗体 }
+		<widget id="password"/>
+
+		{* 显示 password 窗体 的消息队列 }
+		<msgqueue for="$theView->widget('password')" />
+	</div>
+	
+	<input type="submit" value="submit" />
+	
+</form>
