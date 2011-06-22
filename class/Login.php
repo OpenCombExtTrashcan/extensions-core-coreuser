@@ -57,9 +57,14 @@ class Login extends Controller
 			            		)
 			        ) ;
         			$model = new Model($aFragment);
-            		$ss = $model->load($this->aParams->get("user_loginId"),"user_loginId");
+            		$model->load($this->aParams->get("user_loginId"),"user_loginId");
             		
-            		echo "<pre>";print_r($ss);echo "</pre>";
+            		if($model["user_passwd"] == $this->aParams->get("password"))
+            		{
+            			echo "正确";
+            		}else{
+            			echo "不正确";
+            		}
             	}
 		}
         
