@@ -2,18 +2,15 @@
 <msgqueue for="$theView" />
 
 
-<form action="/?c=register" method="post">
+<form action="/?c=login" method="post">
 	<div>
-		{* 显示 username 视图窗体 }
-		<widget id="username"/>
-		
-		{* 显示 username 窗体 的消息队列 }
-		<msgqueue for="$theView->widget('username')" />
+		用户名：<widget id="user_loginId"/>
+		<msgqueue for="$theView->widget('user_loginId')" />
 	</div>
 	
 	<div>
 		{* 显示 password 视图窗体 }
-		<widget id="password"/>
+		密　码：<widget id="password"/>
 
 		{* 显示 password 窗体 的消息队列 }
 		<msgqueue for="$theView->widget('password')" />

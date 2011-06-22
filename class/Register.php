@@ -1,13 +1,18 @@
 <?php
 namespace oc\ext\coreuser ;
 
+use jc\db\ExecuteException;
 use jc\mvc\controller\Controller ;
 use jc\mvc\model\db\Model;
 use jc\mvc\model\db\orm\ModelAssociationMap;
 
 use jc\verifier\Email;
 use jc\verifier\Length;
+use jc\verifier\NotNull;
 use jc\mvc\view\widget\Text;
+use jc\mvc\view\widget\Select;
+use jc\mvc\view\widget\CheckBtn;
+use jc\mvc\view\widget\RadioGroup;
 use jc\message\Message ;
 use jc\mvc\view\DataExchanger ;
 
@@ -22,18 +27,42 @@ class Register extends Controller
 	protected function init()
 	{
 
-		$this->createView("defaultView", "Welcome.template.html",'jc\\mvc\\view\\FormView') ;
+		$this->createView("defaultView", "Register.html",'jc\\mvc\\view\\FormView') ;
 		
 		// 为视图创建、添加窗体，并为窗体添加校验器
-		$this->defaultView->addWidget( new Text("username","用户名") )					// 普通文本窗体
+		$this->defaultView->addWidget( new Text("user_loginId","用户名") );
+						    
+		$this->defaultView->addWidget( new Text("user_email","邮件") )					// 普通文本窗体
 					        ->dataVerifiers()
-						    ->add( Length::flyweight(6,40) ) 						// 添加校验器:长度限制在 6-40 的范围内
 						    ->add( Email::singleton(), "用户名必须是email格式" ) ;		// 添加校验器:必须是 email 格式，并设置一段提示消息，替代框架默认的提示消息
-						
+						    
+		$this->defaultView->addWidget( new Text("username","姓名") )					// 普通文本窗体
+					        ->dataVerifiers()
+						    ->add( Length::flyweight(6,40) ) ;		// 添加校验器:必须是 email 格式，并设置一段提示消息，替代框架默认的提示消息
+						    
 		$this->defaultView->addWidget( new Text("password","密码",Text::PASSWORD) )	// 密码文本窗体
 					        ->dataVerifiers()
 						    ->add( Length::flyweight(6,40) ) ; 						// 添加校验器:长度限制在 6-40 的范围内
-		    
+		
+		$radio1 = new CheckBtn('user_sex_male' , '男' ,  CheckBtn::RADIO , '1');
+		$this->defaultView->addWidget ( $radio1 );
+		
+		$radio2 = new CheckBtn('user_sex_female' , '女' , CheckBtn::RADIO , '2');
+		$this->defaultView->addWidget ( $radio2 );
+		
+		$group = new RadioGroup('user_sex' , 'testGroup');
+		$this->defaultView->addWidget ( $group );
+		$group->addWidget($radio1);
+		$group->addWidget($radio2);
+		$group->setChecked('user_sex_male');
+		
+		$this->defaultView->addWidget( new Text("user_birthday","生日") );
+		
+		$select = new Select ( 'user_city', '选择城市', 1 );
+		$select->addOption ( null, "请选择" ,true);
+		$select->addOption ( "dl", "大连");
+		$select->addOption ( "yk", "营口");
+		$this->defaultView->addWidget ( $select )->dataVerifiers ()->add ( NotNull::singleton (), "请选择城市" );
 		
         $aAssocMap = ModelAssociationMap::singleton() ;
         $aFragment = $aAssocMap->fragment('user',
@@ -43,19 +72,26 @@ class Register extends Controller
         ) ;
         $this->defaultView->setModel(new Model($aFragment)) ;
         
+        $this->defaultView->dataExchanger()->link('password','user_passwd') ;
+        $this->defaultView->dataExchanger()->link('user_loginId','user_loginId') ;
+        
         $this->defaultView->dataExchanger()->link('username','info.user_name') ;
-        $this->defaultView->dataExchanger()->link('password','user_passwd ') ;
+        $this->defaultView->dataExchanger()->link('user_email','info.user_email') ;
+        $this->defaultView->dataExchanger()->link('user_sex','info.user_sex') ;
+        $this->defaultView->dataExchanger()->link('user_birthday','info.user_birthday') ;
+        $this->defaultView->dataExchanger()->link('user_city','info.user_city') ;
+        
+        $this->defaultView->model()->setData('user_register_time',strtotime("now")) ;
+        
 	}
 	
 	public function process()
 	{
+	
 	    if( $this->defaultView->isSubmit( $this->aParams ) )		 
 		{
-            
-            
-            
-            if( $this->defaultView->isSubmit( $this->aParams ) )		 
-            {
+//            $this->defaultView->widget('username')->setValue() ;
+//            $this->defaultView->widget('username')->setValueFromValue() ;
             	
             	// 加载 视图窗体的数据
             	$this->defaultView->loadWidgets( $this->aParams ) ;
@@ -71,15 +107,25 @@ class Register extends Controller
             		
             		$this->defaultView->exchangeData(DataExchanger::WIDGET_TO_MODEL) ;
             		
-            	
-                	if( !$this->defaultView->model()->save() )
-                    {
-                    	echo "无法保存模型." ;
-                    	exit() ;
-                    }
+            		try {
+            			$this->defaultView->model()->save();
+            		} catch (ExecuteException $e) {
+            			
+            			if($e->isDuplicate())
+            			{
+            				$this->defaultView->messageQueue()->add(
+		            			new Message( Message::error, "用户重复" )
+		            		) ;
+            			}
+            			else
+            			{
+            				throw $e ;
+            			}
+            			exit;
+            			
+            		}
             	}
             	
-            }
 		}
         
         
