@@ -20,8 +20,8 @@ class CoreUser extends Extension
             $aAssocMap = ModelAssociationMap::singleton() ;
     	    $aAssocMap->addOrm(
                 	array(
-                		'name' => 'user' ,
-                		'table' => 'users' ,
+                		'keys' => 'user' ,
+                		'table' => 'user' ,
                 	
                 		'hasOne' => array(
                 			array(
@@ -36,9 +36,8 @@ class CoreUser extends Extension
             
             $aAssocMap->addOrm(
             	array(
-            		'name' => 'userinfo' ,
             		'keys' => 'uid' ,
-            		'table' => 'userinfos' ,
+            		'table' => 'userinfo' ,
             		'belongsTo' => array(
             			array(
             				'prop' => 'user' ,

@@ -44,28 +44,23 @@ class Login extends Controller
 	
 	    if( $this->defaultView->isSubmit( $this->aParams ) )		 
 		{
-            	// 加载 视图窗体的数据
-            	$this->defaultView->loadWidgets( $this->aParams ) ;
-            	
-            	// 校验 视图窗体的数据
-            	if( $this->defaultView->verifyWidgets() )
-            	{
-            		$aAssocMap = ModelAssociationMap::singleton() ;
-			        $aFragment = $aAssocMap->fragment('user',
-			            		array(
-			            			'info' ,
-			            		)
-			        ) ;
-        			$model = new Model($aFragment);
-            		$model->load($this->aParams->get("user_loginId"),"user_loginId");
-            		
-            		if($model["user_passwd"] == $this->aParams->get("password"))
-            		{
-            			echo "正确";
-            		}else{
-            			echo "不正确";
-            		}
-            	}
+			// 加载 视图窗体的数据
+			$this->defaultView->loadWidgets( $this->aParams ) ;
+			            	
+			// 校验 视图窗体的数据
+			if( $this->defaultView->verifyWidgets() )
+			{
+				$aAssocMap = ModelAssociationMap::singleton() ;
+				
+				$model = new Model( $aAssocMap->fragment('user', array('info') );
+				
+				if( $model->load($this->aParams->get("user_loginId"),"user_loginId") )
+				{
+					
+				}
+
+				echo "<pre>";print_r($ss);echo "</pre>";
+			}
 		}
         
         
