@@ -30,12 +30,10 @@ class Login extends Controller
 		$this->createView("defaultView", "Login.html",'jc\\mvc\\view\\FormView') ;
 		
 		// 为视图创建、添加窗体，并为窗体添加校验器
-		$this->defaultView->addWidget( new Text("user_loginId","用户名") );
+		$this->defaultView->addWidget( new Text("username","用户名"), 'username' );
 						    
-		$this->defaultView->addWidget( new Text("password","密码",Text::PASSWORD) )	// 密码文本窗体
-					        ->dataVerifiers()
-						    ->add( Length::flyweight(6,40) ) ; 						// 添加校验器:长度限制在 6-40 的范围内
-		
+		$this->defaultView->addWidget( new Text("password","密码",Text::password), 'password' )
+						    ->addVerifier( Length::flyweight(6,40) ) ;
         
 	}
 	
@@ -52,14 +50,16 @@ class Login extends Controller
 			{
 				$aAssocMap = ModelAssociationMap::singleton() ;
 				
-				$model = new Model( $aAssocMap->fragment('user', array('info') );
+				$model = new Model( $aAssocMap->fragment('user', array('info') ));
 				
-				if( $model->load($this->aParams->get("user_loginId"),"user_loginId") )
+				if( $model->load($this->aParams->get("username"),"username") )
 				{
+					echo "<pre>";print_r($model["username"]);echo "</pre>";
+				}else{
 					
 				}
 
-				echo "<pre>";print_r($ss);echo "</pre>";
+				
 			}
 		}
         
