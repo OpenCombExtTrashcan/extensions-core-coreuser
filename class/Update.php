@@ -1,6 +1,8 @@
 <?php
 namespace oc\ext\coreuser ;
 
+use jc\auth\IdManager;
+
 use jc\db\ExecuteException;
 use jc\mvc\controller\Controller ;
 use jc\mvc\model\db\Model;
@@ -26,6 +28,7 @@ class Update extends Controller
 {
 	protected function init()
 	{
+		$aIdMgr = IdManager::fromSession() ;
 
 		$this->createView("defaultView", "Update.html",'jc\\mvc\\view\\FormView') ;
 
