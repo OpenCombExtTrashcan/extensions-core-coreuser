@@ -57,7 +57,6 @@ class Register extends Controller
 	
 	public function process()
 	{
-	
 	    if( $this->defaultView->isSubmit( $this->aParams ) )		 
 		{
             // 加载 视图窗体的数据
@@ -76,6 +75,8 @@ class Register extends Controller
             		$this->defaultView->model()->save() ;
             			
             		$this->defaultView->createMessage( Message::success, "注册成功！" ) ;
+            		
+            		$this->defaultView->hideForm() ;
             			
             	} catch (ExecuteException $e) {
             			
@@ -95,10 +96,7 @@ class Register extends Controller
            	}
 		}
         
-		else 
-		{
-			$this->defaultView->render() ;
-		}
+		$this->defaultView->render() ;
 	}
 }
 
