@@ -53,12 +53,11 @@ class Update extends Controller
 
 		$this->defaultView->addWidget ( new RadioGroup('sex'), 'info.sex')
 					->createRadio('女','2')
-					->createRadio('男','1')
-					->createRadio('保密','0',true) ;
+					->createRadio('男','1',true);
 
-		$this->defaultView->addWidget( new Text("birthday","生日"), 'birthday' );
+		$this->defaultView->addWidget( new Text("birthday","生日"), 'info.birthday' );
 						
-		$this->defaultView->addWidget ( new Select ( 'city', '选择城市', 1 ), 'city' )
+		$this->defaultView->addWidget ( new Select ( 'city', '选择城市', 1 ), 'info.city' )
 								->addOption ( "请选择", null, true)
 								->addOption ( "大连", "dl" )
 								->addOption ( "营口", "yk" )
