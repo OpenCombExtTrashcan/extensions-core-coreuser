@@ -43,13 +43,12 @@ class Update extends Controller
 		       )
 		) ;
 		$this->defaultView->setModel( Model::fromFragment('user',array('info')) ) ;
-        $this->defaultView->model()->load("1","uid");
             		
             		
 		// 为视图创建、添加窗体，并为窗体添加校验器
-		$this->defaultView->addWidget( new Text("password","密码",$this->defaultView->model()->password,Text::password), 'password' );
+		$this->defaultView->addWidget( new Text("password","密码","",Text::password), 'password' );
 						    
-		$this->defaultView->addWidget( new Text("email","邮件",$this->defaultView->model()->email), 'info.email' )
+		$this->defaultView->addWidget( new Text("email","邮件"), 'info.email' )
 						    ->addVerifier( Email::singleton(), "用户名必须是email格式" ) ;
 
 		$this->defaultView->addWidget ( new RadioGroup('sex'), 'info.sex')
@@ -57,7 +56,7 @@ class Update extends Controller
 					->createRadio('男','1')
 					->createRadio('保密','0',true) ;
 
-		$this->defaultView->addWidget( new Text("birthday","生日",$this->defaultView->model()->birthday), 'birthday' );
+		$this->defaultView->addWidget( new Text("birthday","生日"), 'birthday' );
 						
 		$this->defaultView->addWidget ( new Select ( 'city', '选择城市', 1 ), 'city' )
 								->addOption ( "请选择", null, true)
@@ -70,18 +69,17 @@ class Update extends Controller
 	
 	public function process()
 	{
+		
+        $this->defaultView->model()->load("1","uid");
+        
+        $this->defaultView->exchangeData(DataExchanger::MODEL_TO_WIDGET) ;
+        
+        
+        
 	    if( $this->defaultView->isSubmit( $this->aParams ) )		 
 		{
 //            $this->defaultView->widget('username')->setValue() ;
 //            $this->defaultView->widget('username')->setValueFromValue() ;
-		        $this->defaultView->setModel(Model::fromFragment('user',array('info'))) ;
-		        
-		        $this->defaultView->dataExchanger()->link('password','password') ;
-		        
-		        $this->defaultView->dataExchanger()->link('email','info.email') ;
-		        $this->defaultView->dataExchanger()->link('sex','info.sex') ;
-		        $this->defaultView->dataExchanger()->link('birthday','info.birthday') ;
-		        $this->defaultView->dataExchanger()->link('city','info.city') ;
 		        
 		        $this->defaultView->model()->setData('registerTime',strtotime("now")) ;
         
@@ -93,8 +91,6 @@ class Update extends Controller
             	{
             		
             		$this->defaultView->exchangeData(DataExchanger::WIDGET_TO_MODEL) ;
-            		
-            		echo "<pre>";print_r($this->defaultView->model()->username);echo "</pre>";exit;
             		if($this->defaultView->model()->uid)
             		{
 	            		try {
