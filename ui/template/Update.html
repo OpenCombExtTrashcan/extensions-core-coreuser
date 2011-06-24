@@ -2,42 +2,34 @@
 <msgqueue for="$theView" />
 
 
-<form action="/?c=register" method="post">
+<form action="/?c=update" method="post">
 	
 	<div>
 		{* 显示 password 视图窗体 }
 		密　码：<widget id="password"/>
-
-		{* 显示 password 窗体 的消息队列 }
+		
+		{* 显示 username 窗体 的消息队列 }
 		<msgqueue for="$theView->widget('password')" />
 	</div>
 	
 	<div>
-		{* 显示 username 视图窗体 }
-		姓　名：<widget id="username"/>
-		
-		{* 显示 username 窗体 的消息队列 }
-		<msgqueue for="$theView->widget('username')" />
+		邮　件：<widget id="email"/>
+		<msgqueue for="$theView->widget('email')" />
 	</div>
 	
 	<div>
-		邮　件：<widget id="user_email"/>
-		<msgqueue for="$theView->widget('user_email')" />
+		性　别：<widget id="sex:1"/> <widget id="sex:2"/>
+		<msgqueue for="$theView->widget('sex')" />
 	</div>
 	
 	<div>
-		性　别：<label>男</label><widget id="user_sex_male"/><label>女</label><widget id="user_sex_female"/>
-		<msgqueue for="$theView->widget('user_sex')" />
+		生　日：<widget id="birthday"/>
+		<msgqueue for="$theView->widget('birthday')" />
 	</div>
 	
 	<div>
-		生　日：<widget id="user_birthday"/>
-		<msgqueue for="$theView->widget('user_birthday')" />
-	</div>
-	
-	<div>
-		城　市：<widget id="user_city"/>
-		<msgqueue for="$theView->widget('user_city')" />
+		城　市：<widget id="city"/>
+		<msgqueue for="$theView->widget('city')" />
 	</div>
 	
 	<input type="submit" value="submit" />

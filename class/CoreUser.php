@@ -13,9 +13,6 @@ class CoreUser extends Extension
 	public function load()
 	{
 	    
-	    // 数据库设定
-        DB::singleton()->setDriver( new PDODriver("mysql:host=192.168.1.1;dbname=oc",'root','1') ) ;
-        
     	    // 取得模型关系图的单件实例
             $aAssocMap = ModelAssociationMap::singleton() ;
     	    $aAssocMap->addOrm(
@@ -31,6 +28,17 @@ class CoreUser extends Extension
                 				'model' => 'userinfo'
                 			),
                 		) ,
+                		'hasAndBelongsToMany' => array(
+							array(
+								'prop' => 'usersubscribe' ,
+								'fromk' => 'uid' ,
+								'tok' => 'uid' ,
+								'bfromk' => 'uid' ,
+								'btok' => 'subscribeid' ,	
+								'bridge' => 'subscribe' ,
+								'model' => 'user',
+							) ,
+						),
                 	)
             ) ;
             
@@ -48,7 +56,7 @@ class CoreUser extends Extension
             		),
             	)
             );
-		
+            
 		
 		///////////////////////////////////////
 		// 向系统添加控制器
@@ -56,6 +64,8 @@ class CoreUser extends Extension
 		$this->application()->accessRouter()->addController('login', "oc\\ext\\coreuser\\Login") ;
 		$this->application()->accessRouter()->addController('logout', "oc\\ext\\coreuser\\Logout") ;
 		$this->application()->accessRouter()->addController('update', "oc\\ext\\coreuser\\Update") ;
+		$this->application()->accessRouter()->addController('subscribe', "oc\\ext\\coreuser\\Subscribe") ;
+		$this->application()->accessRouter()->addController('switch', "oc\\ext\\coreuser\\Switchuser") ;
 	}
 	
 }

@@ -44,7 +44,26 @@ class Login extends Controller
 	
 	public function process()
 	{
-	
+		
+		$aId = new Id($this->aUserModel,array(
+				'id' => 'uid' ,
+				'username' => 'username' ,
+				'nickname' => 'info.nickname' ,
+				'lastlogintime' => 'lastlogintime' ,
+				'lastloginip' => 'lastloginip' ,
+				'activetime' => 'activetime' ,
+				'activeip' => 'activeip' ,
+		)) ;
+			
+		echo "当前登陆用户：<a href=\"?c=register\">注册</a> <a href=\"?c=update\">修改</a> <a href=\"?c=logout\">退出</a><br/>";
+		$userList = IdManager::fromSession();
+		foreach($userList->iterator() as $u){
+			echo $u->username()."<a href=\"?c=switch&uid=".$u->userId()."\">切换</a><br/>";
+		}
+		
+		
+		//切换用户
+		//登陆
 	    if( $this->defaultView->isSubmit( $this->aParams ) )		 
 		{do{
 			// 加载 视图窗体的数据
@@ -68,22 +87,14 @@ class Login extends Controller
 				break ;
 			}
             		
-			
-			$aId = new Id($this->aUserModel,array(
-				'id' => 'uid' ,
-				'username' => 'username' ,
-				'nickname' => 'info.nickname' ,
-				'lastlogintime' => 'lastlogintime' ,
-				'lastloginip' => 'lastloginip' ,
-				'activetime' => 'activetime' ,
-				'activeip' => 'activeip' ,
-			)) ; 
+			 
 			
 			// IdManager::fromSession()->clear() ;
 			IdManager::fromSession()->addId($aId) ;
 			
-			$this->defaultView->createMessage( Message::success, "登录成功。" ) ;
 			
+			
+			$this->defaultView->createMessage( Message::success, "登录成功。" ) ;
 			$this->defaultView->hideForm() ;
 			
 		} while(0) ; }

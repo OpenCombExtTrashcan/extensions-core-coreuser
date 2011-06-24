@@ -28,25 +28,25 @@ class Register extends Controller
 		$this->createView("defaultView", "Register.html",true) ;
 		
 		// 为视图创建、添加窗体，并为窗体添加校验器
-		$this->defaultView->addWidget( new Text("user_loginId","用户名"), 'username' );
+		$this->defaultView->addWidget( new Text("username","用户名"), 'username' );
 
-		$this->defaultView->addWidget( new Text("user_email","邮件"), 'info.email' )
+		$this->defaultView->addWidget( new Text("password","密码",Text::password), 'password' )
+						    ->addVerifier( Length::flyweight(6,40) ) ;
+
+		$this->defaultView->addWidget( new Text("email","邮件"), 'info.email' )
 						    ->addVerifier( Email::singleton(), "用户名必须是email格式" ) ;
 
 		$this->defaultView->addWidget( new Text("username","姓名"), 'info.nickname' )
 						    ->addVerifier( Length::flyweight(6,40) ) ;
 
-		$this->defaultView->addWidget( new Text("password","密码",Text::password), 'password' )
-						    ->addVerifier( Length::flyweight(6,40) ) ;
-
-		$this->defaultView->addWidget ( new RadioGroup('user_sex'), 'info.sex' )
+		$this->defaultView->addWidget ( new RadioGroup('sex'), 'info.sex' )
 					->createRadio('女','2')
 					->createRadio('男','1')
 					->createRadio('保密','0',true) ;
 
-		$this->defaultView->addWidget( new Text("user_birthday","生日"), 'birthday' );
+		$this->defaultView->addWidget( new Text("birthday","生日"), 'birthday' );
 						
-		$this->defaultView->addWidget ( new Select ( 'user_city', '选择城市', 1 ), 'city' )
+		$this->defaultView->addWidget ( new Select ( 'city', '选择城市', 1 ), 'city' )
 								->addOption ( "请选择", null, true)
 								->addOption ( "大连", "dl" )
 								->addOption ( "营口", "yk" )
@@ -61,7 +61,7 @@ class Register extends Controller
 		{
             // 加载 视图窗体的数据
             $this->defaultView->loadWidgets( $this->aParams ) ;
-            	
+            
             // 校验 视图窗体的数据
             if( $this->defaultView->verifyWidgets() )
             {
@@ -71,9 +71,7 @@ class Register extends Controller
             	$this->defaultView->model()->setData('registerTime',time()) ;
             		
             	try {
-            			
             		$this->defaultView->model()->save() ;
-            			
             		$this->defaultView->createMessage( Message::success, "注册成功！" ) ;
             		
             		$this->defaultView->hideForm() ;
