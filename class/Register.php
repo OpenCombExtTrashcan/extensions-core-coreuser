@@ -1,6 +1,7 @@
 <?php
 namespace oc\ext\coreuser ;
 
+use oc\base\FrontFrame;
 use jc\db\ExecuteException;
 use jc\mvc\controller\Controller ;
 use jc\mvc\model\db\Model;
@@ -25,6 +26,8 @@ class Register extends Controller
 {
 	protected function init()
 	{
+		$this->add(new FrontFrame()) ;
+		
 		$this->createView("defaultView", "Register.html",true) ;
 		
 		// 为视图创建、添加窗体，并为窗体添加校验器
