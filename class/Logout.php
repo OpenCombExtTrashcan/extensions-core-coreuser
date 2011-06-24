@@ -29,7 +29,7 @@ class Logout extends Controller
 		}
 		else 
 		{
-			$this->createMessage(Message::notice,"将以游客的身份访问。") ;
+			$this->createMessage(Message::notice,"正在以游客的身份访问。") ;
 		}
 		
 		// 仅仅显示消息队列
