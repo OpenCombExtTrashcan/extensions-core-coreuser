@@ -1,16 +1,18 @@
 <?php
 namespace oc\ext\coreuser ;
 
+use oc\base\FrontFrame;
 use jc\auth\IdManager;
-
 use jc\message\Message;
-
 use jc\mvc\controller\Controller;
 
 class Logout extends Controller
 {
 	protected function init()
-	{}
+	{
+		// 网页框架
+		$this->add(new FrontFrame()) ;
+	}
 
 	public function process()
 	{

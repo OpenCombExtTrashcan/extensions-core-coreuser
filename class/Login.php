@@ -1,6 +1,7 @@
 <?php
 namespace oc\ext\coreuser ;
 
+use oc\base\FrontFrame;
 use jc\session\Session;
 use jc\auth\IdManager;
 use jc\auth\Id;
@@ -29,6 +30,8 @@ class Login extends Controller
 {
 	protected function init()
 	{
+		// 网页框架
+		$this->add(new FrontFrame()) ;
 
 		$this->createView("defaultView", "Login.html",'jc\\mvc\\view\\FormView') ;
 		
@@ -44,7 +47,6 @@ class Login extends Controller
 	
 	public function process()
 	{
-		
 		$aId = new Id($this->aUserModel,array(
 				'id' => 'uid' ,
 				'username' => 'username' ,
@@ -55,12 +57,16 @@ class Login extends Controller
 				'activeip' => 'activeip' ,
 		)) ;
 			
+		/**
+		//  不能在 controller/model 以及view以外的任何地方 向浏览器输出任何内容 
+		//  随着框架的完善，直接使用echo输出的内容会被丢弃。以下代码需要转移到视图中
+		//
 		echo "当前登陆用户：<a href=\"?c=register\">注册</a> <a href=\"?c=update\">修改</a> <a href=\"?c=logout\">退出</a><br/>";
 		$userList = IdManager::fromSession();
 		foreach($userList->iterator() as $u){
 			echo $u->username()."<a href=\"?c=switch&uid=".$u->userId()."\">切换</a><br/>";
 		}
-		
+		*/
 		
 		//切换用户
 		//登陆
@@ -87,20 +93,13 @@ class Login extends Controller
 				break ;
 			}
             		
-			 
-			
 			// IdManager::fromSession()->clear() ;
 			IdManager::fromSession()->addId($aId) ;
-			
-			
 			
 			$this->defaultView->createMessage( Message::success, "登录成功。" ) ;
 			$this->defaultView->hideForm() ;
 			
 		} while(0) ; }
-        
-		
-        $this->defaultView->render() ;
 
 	}
 }

@@ -26,6 +26,7 @@ class Register extends Controller
 {
 	protected function init()
 	{
+		// 网页框架
 		$this->add(new FrontFrame()) ;
 		
 		$this->createView("defaultView", "Register.html",true) ;
@@ -96,8 +97,6 @@ class Register extends Controller
             	}
            	}
 		}
-        
-		$this->defaultView->render() ;
 	}
 }
 

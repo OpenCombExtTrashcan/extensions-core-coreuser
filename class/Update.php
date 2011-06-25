@@ -30,6 +30,10 @@ class Update extends Controller
 {
 	protected function init()
 	{
+		// 网页框架
+		$this->add(new FrontFrame()) ;
+		
+		
 		$aIdMgr = IdManager::fromSession() ;
 
 		$this->createView("defaultView", "Update.html",'jc\\mvc\\view\\FormView') ;

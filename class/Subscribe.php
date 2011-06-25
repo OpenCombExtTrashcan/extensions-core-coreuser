@@ -25,8 +25,10 @@ class Subscribe extends Controller
 {
 	protected function init()
 	{
-		$this->createView("defaultView", "Subscribe.html",true) ;
+		// 网页框架
+		$this->add(new FrontFrame()) ;
 		
+		$this->createView("defaultView", "Subscribe.html",true) ;
 	}
 	
 	public function process()
