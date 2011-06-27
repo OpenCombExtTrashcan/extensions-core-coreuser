@@ -1,6 +1,8 @@
 <?php
 namespace oc\ext\coreuser ;
 
+use oc\base\FrontFrame;
+
 use jc\verifier\NotEmpty;
 
 use jc\auth\IdManager;
@@ -119,8 +121,6 @@ class Update extends Controller
             	
 		}
 		
-        
-		$this->defaultView->render() ;
 	}
 }
 

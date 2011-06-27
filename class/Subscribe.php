@@ -1,6 +1,8 @@
 <?php
 namespace oc\ext\coreuser ;
 
+use oc\base\FrontFrame;
+
 use jc\db\ExecuteException;
 use jc\mvc\controller\Controller ;
 use jc\mvc\model\db\Model;
@@ -42,9 +44,6 @@ class Subscribe extends Controller
 	        
 			$this->defaultView->model()->save() ;     
         }
-               			
-            			
-		//$this->defaultView->render() ;
 	}
 }
 

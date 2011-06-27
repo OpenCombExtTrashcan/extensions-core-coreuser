@@ -57,16 +57,6 @@ class Login extends Controller
 				'activeip' => 'activeip' ,
 		)) ;
 			
-		/**
-		//  不能在 controller/model 以及view以外的任何地方 向浏览器输出任何内容 
-		//  随着框架的完善，直接使用echo输出的内容会被丢弃。以下代码需要转移到视图中
-		//
-		echo "当前登陆用户：<a href=\"?c=register\">注册</a> <a href=\"?c=update\">修改</a> <a href=\"?c=logout\">退出</a><br/>";
-		$userList = IdManager::fromSession();
-		foreach($userList->iterator() as $u){
-			echo $u->username()."<a href=\"?c=switch&uid=".$u->userId()."\">切换</a><br/>";
-		}
-		*/
 		
 		//切换用户
 		//登陆

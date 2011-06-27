@@ -1,6 +1,8 @@
 <?php
 namespace oc\ext\coreuser ;
 
+use oc\base\FrontFrame;
+
 use jc\auth\IdManager;
 
 use jc\message\Message;

@@ -42,9 +42,6 @@ class AllUser extends Controller
 			
 		}
 		
-		
-        $this->defaultView->render() ;
-
 	}
 }
 
