@@ -66,14 +66,13 @@ class Update extends Controller
 								->addOption ( "大连", "dl" )
 								->addOption ( "营口", "yk" )
 								->addVerifier( NotEmpty::singleton (), "请选择城市" ) ;
-		
 								
 	}
 	
 	public function process()
 	{
-		
-        $this->defaultView->model()->load("1","uid");
+		$userList = IdManager::fromSession();
+        $this->defaultView->model()->load($userList->currentId()->userId(),"uid");
         
         $this->defaultView->exchangeData(DataExchanger::MODEL_TO_WIDGET) ;
         

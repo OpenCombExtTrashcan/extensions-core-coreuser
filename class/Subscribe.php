@@ -37,7 +37,7 @@ class Subscribe extends Controller
         
         if($this->defaultView->model()->load("1"))
         {
-            $this->defaultView->model()->setData('uid',1) ;
+            //$this->defaultView->model()->setData('uid',1) ;
 	        $this->defaultView->model()->child('usersubscribe')->createChild()->setData('uid',2) ;
 	        
 			$this->defaultView->model()->save() ;     
