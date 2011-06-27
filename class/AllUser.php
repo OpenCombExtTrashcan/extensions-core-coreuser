@@ -32,14 +32,14 @@ class AllUser extends Controller
 
 		$this->createView("defaultView", "AllUser.html") ;
 		
-		$this->aUserModel = Model::fromFragment('user', array('info')) ;
+		$this->aUserModel = Model::fromFragment('user', array('info'),true) ;
 	}
 	
 	public function process()
 	{
 		$this->aUserModel->load();
 		foreach($this->aUserModel->dataIterator() as $u){
-			
+			echo "<pre>";print_r($u);echo "</pre>";
 		}
 		
 	}
