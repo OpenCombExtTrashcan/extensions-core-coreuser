@@ -37,12 +37,16 @@ class Subscribe extends Controller
 	{
         $this->defaultView->setModel( Model::fromFragment('user',array("usersubscribe")) ) ;
         
-        if($this->defaultView->model()->load("1"))
+        if( $this->defaultView->model()->load("1") )
         {
             //$this->defaultView->model()->setData('uid',1) ;
-	        $this->defaultView->model()->child('usersubscribe')->createChild()->setData('uid',2) ;
+	        //$this->defaultView->model()->child('usersubscribe')->createChild()->setData('uid',2) ;
 	        
-			$this->defaultView->model()->save() ;     
+        	if( !$this->defaultView->model()->child('usersubscribe')->findChildBy("30") )
+        	{
+		        $this->defaultView->model()->child('usersubscribe')->loadChild("30") ;
+				$this->defaultView->model()->save() ;
+        	} 
         }
 	}
 }
