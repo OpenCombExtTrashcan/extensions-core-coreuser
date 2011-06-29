@@ -38,7 +38,7 @@ class Update extends Controller
 		
 		$aIdMgr = IdManager::fromSession() ;
 
-		$this->createView("defaultView", "Update.html",'jc\\mvc\\view\\FormView') ;
+		$this->createView("defaultView", "CoreUser.Update.html",'jc\\mvc\\view\\FormView') ;
 
 								
 		//当前登陆者信息

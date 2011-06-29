@@ -30,18 +30,16 @@ class AllUser extends Controller
 	protected function init()
 	{
 
-		$this->createView("defaultView", "AllUser.html") ;
+		$this->createView("defaultView", "CoreUser.AllUser.html") ;
 		
 		$this->aUserModel = Model::fromFragment('user', array('info'),true) ;
+		
+		$this->defaultView->setModel($this->aUserModel) ;
 	}
 	
 	public function process()
 	{
 		$this->aUserModel->load();
-		foreach($this->aUserModel->dataIterator() as $u){
-			echo "<pre>";print_r($u);echo "</pre>";
-		}
-		
 	}
 }
 

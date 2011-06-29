@@ -33,7 +33,7 @@ class Login extends Controller
 		// 网页框架
 		$this->add(new FrontFrame()) ;
 
-		$this->createView("defaultView", "Login.html",'jc\\mvc\\view\\FormView') ;
+		$this->createView("defaultView", "CoreUser.Login.html",'jc\\mvc\\view\\FormView') ;
 		
 		// 为视图创建、添加窗体，并为窗体添加校验器
 		$this->defaultView->addWidget( new Text("username","用户名",'aarongao'), 'username' );

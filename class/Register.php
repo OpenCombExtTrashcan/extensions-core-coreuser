@@ -29,7 +29,7 @@ class Register extends Controller
 		// 网页框架
 		$this->add(new FrontFrame()) ;
 		
-		$this->createView("defaultView", "Register.html",true) ;
+		$this->createView("defaultView", "CoreUser.Register.html",true) ;
 		
 		// 为视图创建、添加窗体，并为窗体添加校验器
 		$this->defaultView->addWidget( new Text("username","用户名"), 'username' );

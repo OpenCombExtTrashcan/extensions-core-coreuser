@@ -30,7 +30,7 @@ class Subscribe extends Controller
 		// 网页框架
 		$this->add(new FrontFrame()) ;
 		
-		$this->createView("defaultView", "Subscribe.html",true) ;
+		$this->createView("defaultView", "CoreUser.Subscribe.html",true) ;
 	}
 	
 	public function process()
@@ -42,9 +42,9 @@ class Subscribe extends Controller
             //$this->defaultView->model()->setData('uid',1) ;
 	        //$this->defaultView->model()->child('usersubscribe')->createChild()->setData('uid',2) ;
 	        
-        	if( !$this->defaultView->model()->child('usersubscribe')->findChildBy("30") )
+        	if( !$this->defaultView->model()->child('usersubscribe')->findChildBy("30",'username') )
         	{
-		        $this->defaultView->model()->child('usersubscribe')->loadChild("30") ;
+		        $this->defaultView->model()->child('usersubscribe')->loadChild("5",'username') ;
 				$this->defaultView->model()->save() ;
         	} 
         }

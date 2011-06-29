@@ -63,11 +63,11 @@ class CoreUser extends Extension
 		$this->application()->accessRouter()->addController('register', "oc\\ext\\coreuser\\Register") ;
 		$this->application()->accessRouter()->addController('login', "oc\\ext\\coreuser\\Login") ;
 		$this->application()->accessRouter()->addController('logout', "oc\\ext\\coreuser\\Logout") ;
-		$this->application()->accessRouter()->addController('update', "oc\\ext\\coreuser\\Update") ;
-		$this->application()->accessRouter()->addController('subscribe', "oc\\ext\\coreuser\\Subscribe") ;
-		$this->application()->accessRouter()->addController('addsubscribe', "oc\\ext\\coreuser\\Subscribe") ;
-		$this->application()->accessRouter()->addController('switch', "oc\\ext\\coreuser\\Switchuser") ;
-		$this->application()->accessRouter()->addController('alluser', "oc\\ext\\coreuser\\AllUser") ;
+		$this->application()->accessRouter()->addController('coreuser.update', "oc\\ext\\coreuser\\Update") ;
+		$this->application()->accessRouter()->addController('coreuser.subscribe', "oc\\ext\\coreuser\\Subscribe") ;
+		$this->application()->accessRouter()->addController('coreuser.addsubscribe', "oc\\ext\\coreuser\\Subscribe") ;
+		$this->application()->accessRouter()->addController('coreuser.switch', "oc\\ext\\coreuser\\Switchuser") ;
+		$this->application()->accessRouter()->addController('coreuser.alluser', "oc\\ext\\coreuser\\AllUser") ;
 	}
 	
 }
