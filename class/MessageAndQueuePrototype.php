@@ -4,7 +4,7 @@ namespace oc\ext\coreuser ;
 use jc\message\Message;
 
 use oc\base\FrontFrame;
-use jc\mvc\controller\Controller;
+use oc\mvc\controller\Controller;
 
 class MessageAndQueuePrototype extends Controller
 {

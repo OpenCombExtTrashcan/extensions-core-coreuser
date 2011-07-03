@@ -8,7 +8,7 @@ use jc\verifier\NotEmpty;
 use jc\auth\IdManager;
 
 use jc\db\ExecuteException;
-use jc\mvc\controller\Controller ;
+use oc\mvc\controller\Controller ;
 use oc\mvc\model\db\Model;
 use jc\mvc\model\db\orm\ModelAssociationMap;
 

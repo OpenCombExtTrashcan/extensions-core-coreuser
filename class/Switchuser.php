@@ -7,7 +7,7 @@ use jc\auth\IdManager;
 
 use jc\message\Message;
 
-use jc\mvc\controller\Controller;
+use oc\mvc\controller\Controller;
 
 class Switchuser extends Controller
 {

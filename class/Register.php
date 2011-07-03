@@ -3,7 +3,7 @@ namespace oc\ext\coreuser ;
 
 use oc\base\FrontFrame;
 use jc\db\ExecuteException;
-use jc\mvc\controller\Controller ;
+use oc\mvc\controller\Controller ;
 use oc\mvc\model\db\Model;
 use jc\mvc\model\db\orm\ModelAssociationMap;
 use jc\verifier\Email;
