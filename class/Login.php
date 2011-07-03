@@ -7,7 +7,7 @@ use jc\auth\IdManager;
 use jc\auth\Id;
 use jc\db\ExecuteException;
 use jc\mvc\controller\Controller ;
-use jc\mvc\model\db\Model;
+use oc\mvc\model\db\Model;
 use jc\mvc\model\db\orm\ModelAssociationMap;
 use jc\verifier\Email;
 use jc\verifier\Length;
