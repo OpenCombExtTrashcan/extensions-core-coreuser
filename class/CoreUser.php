@@ -66,16 +66,16 @@ class CoreUser extends Extension
 		
 		///////////////////////////////////////
 		// 向系统添加控制器
-		$this->application()->accessRouter()->addController('register', "oc\\ext\\coreuser\\Register") ;
-		$this->application()->accessRouter()->addController('login', "oc\\ext\\coreuser\\Login") ;
-		$this->application()->accessRouter()->addController('logout', "oc\\ext\\coreuser\\Logout") ;
-		$this->application()->accessRouter()->addController('coreuser.update', "oc\\ext\\coreuser\\Update") ;
-		$this->application()->accessRouter()->addController('coreuser.subscribe', "oc\\ext\\coreuser\\Subscribe") ;
-		$this->application()->accessRouter()->addController('coreuser.addsubscribe', "oc\\ext\\coreuser\\Subscribe") ;
-		$this->application()->accessRouter()->addController('coreuser.switch', "oc\\ext\\coreuser\\Switchuser") ;
-		$this->application()->accessRouter()->addController('coreuser.alluser', "oc\\ext\\coreuser\\AllUser") ;
+		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\Register",'register','') ;
+		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\Login",'login','') ;
+		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\Logout",'logout','') ;
+		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\Update",'update') ;
+		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\Subscribe",'subscribe') ;
+		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\Subscribe",'addsubscribe') ;
+		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\Switchuser",'switch') ;
+		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\AllUser",'alluser') ;
 		
-		$this->application()->accessRouter()->addController('all_message_types', "oc\\ext\\coreuser\\MessageAndQueuePrototype") ;
+		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\MessageAndQueuePrototype",'all_message_types') ;
 	}
 	
 }
