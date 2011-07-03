@@ -27,6 +27,12 @@ class CoreUser extends Extension
                 				'tok' => 'uid' ,
                 				'model' => 'userinfo'
                 			),
+                			array(
+                				'prop' => 'info2' ,
+                				'fromk' => 'uid' ,
+                				'tok' => 'uid' ,
+                				'model' => 'userinfo'
+                			),
                 		) ,
                 		'hasAndBelongsToMany' => array(
 							array(
@@ -68,6 +74,8 @@ class CoreUser extends Extension
 		$this->application()->accessRouter()->addController('coreuser.addsubscribe', "oc\\ext\\coreuser\\Subscribe") ;
 		$this->application()->accessRouter()->addController('coreuser.switch', "oc\\ext\\coreuser\\Switchuser") ;
 		$this->application()->accessRouter()->addController('coreuser.alluser', "oc\\ext\\coreuser\\AllUser") ;
+		
+		$this->application()->accessRouter()->addController('all_message_types', "oc\\ext\\coreuser\\MessageAndQueuePrototype") ;
 	}
 	
 }
