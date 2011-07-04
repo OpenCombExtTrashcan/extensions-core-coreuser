@@ -2,16 +2,13 @@
 namespace oc\ext\coreuser ;
 
 use oc\base\FrontFrame;
-
+use jc\mvc\controller\Relocater;
 use jc\verifier\NotEmpty;
-
 use jc\auth\IdManager;
-
 use jc\db\ExecuteException;
 use oc\mvc\controller\Controller ;
 use oc\mvc\model\db\Model;
 use jc\mvc\model\db\orm\ModelAssociationMap;
-
 use jc\verifier\Email;
 use jc\verifier\Length;
 use jc\verifier\NotNull;
@@ -73,6 +70,10 @@ class Update extends Controller
 	
 	public function process()
 	{
+		Relocater::locate("http://www.baidu.com", "xxxxx") ;
+		
+		return ;
+		
 		$userList = IdManager::fromSession();
         $this->defaultView->model()->load($userList->currentId()->userId(),"uid");
         
