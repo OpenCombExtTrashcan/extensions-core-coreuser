@@ -1,5 +1,7 @@
 <?php
-namespace oc\ext\coreuser ;
+namespace oc\ext\coreuser\subscribe ;
+
+use jc\mvc\controller\Relocater;
 
 use oc\base\FrontFrame;
 
@@ -22,28 +24,29 @@ use jc\mvc\view\DataExchanger ;
 
 
 /**
- * 用户列表
  * Enter description here ...
  * @author gaojun
  *
  */
-class AllUser extends Controller
+class Remove extends Controller
 {
 	protected function init()
 	{
 		// 网页框架
 		$this->add(new FrontFrame()) ;
-
-		$this->createView("defaultView", "CoreUser.AllUser.html") ;
 		
-		$this->aUserModel = Model::fromFragment('user', array(),true) ;
-		
-		$this->defaultView->setModel($this->aUserModel) ;
+		$this->model = Model::fromFragment('subscribe');
 	}
 	
 	public function process()
 	{
-		$this->aUserModel->load();
+		
+		$this->model->load(array(IdManager::fromSession()->currentId()->userId(),$this->aParams->get("uid")),array("uid","subscribeid"));
+		
+		if($this->model->delete())
+		{
+		    Relocater::locate("/?c=coreuser.subscribe.index", "删除成功") ;
+		}
 	}
 }
 

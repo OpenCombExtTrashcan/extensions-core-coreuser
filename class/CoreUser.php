@@ -38,9 +38,9 @@ class CoreUser extends Extension
 							array(
 								'prop' => 'usersubscribe' ,
 								'fromk' => 'uid' ,
-								'tok' => 'uid' ,
+								'btok' => 'uid' ,
 								'bfromk' => 'subscribeid' ,
-								'btok' => 'uid' ,	
+								'tok' => 'uid' ,	
 								'bridge' => 'subscribe' ,
 								'model' => 'user',
 							) ,
@@ -63,6 +63,21 @@ class CoreUser extends Extension
             	)
             );
             
+            $aAssocMap->addOrm(
+            	array(
+            		'keys' => array("uid","subscribeid") ,
+            		'table' => 'subscribe' ,
+            		'hasOne' => array(
+            			array(
+            				'prop' => 'user' ,
+            				'fromk' => 'subscribeid' ,
+            				'tok' => 'uid' ,
+            				'model' => 'user'
+            			),
+            		),
+            	)
+            );
+            
 		
 		///////////////////////////////////////
 		// 向系统添加控制器
@@ -70,10 +85,12 @@ class CoreUser extends Extension
 		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\Login",'login','') ;
 		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\Logout",'logout','') ;
 		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\Update",'update') ;
-		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\Subscribe",'subscribe') ;
-		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\Subscribe",'addsubscribe') ;
+		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\subscribe\\Index",'subscribe.index') ;
+		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\subscribe\\Create",'subscribe.create') ;
+		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\subscribe\\Remove",'subscribe.remove') ;
 		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\Switchuser",'switch') ;
 		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\AllUser",'alluser') ;
+		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\MyFriend",'myfriend','') ;
 		
 		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\MessageAndQueuePrototype",'all_message_types') ;
 	}

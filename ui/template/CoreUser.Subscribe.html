@@ -1,2 +1,5 @@
-{* 显示 当前视图 的消息队列 }
-<msgqueue for="$theView" />
+<foreach for="$theModel->childIterator()" item="row">
+	
+			{= $row->child('user')->data('username') }  <a href="?c=coreuser.subscribe.remove&uid={= $row->child('user')->data('uid') }">删除</a> <br/>
+			
+</foreach>

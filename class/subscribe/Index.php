@@ -1,5 +1,7 @@
 <?php
-namespace oc\ext\coreuser ;
+namespace oc\ext\coreuser\subscribe ;
+
+use jc\auth\IdManager;
 
 use oc\base\FrontFrame;
 
@@ -23,7 +25,7 @@ use jc\mvc\view\DataExchanger ;
  * @author gaojun
  *
  */
-class Subscribe extends Controller
+class Index extends Controller
 {
 	protected function init()
 	{
@@ -31,23 +33,13 @@ class Subscribe extends Controller
 		$this->add(new FrontFrame()) ;
 		
 		$this->createView("defaultView", "CoreUser.Subscribe.html",true) ;
+		
+		$this->defaultView->setModel( Model::fromFragment('subscribe',array("user"),true) ) ;
 	}
 	
 	public function process()
 	{
-        $this->defaultView->setModel( Model::fromFragment('user',array("usersubscribe")) ) ;
-        
-        if( $this->defaultView->model()->load("1") )
-        {
-            //$this->defaultView->model()->setData('uid',1) ;
-	        //$this->defaultView->model()->child('usersubscribe')->createChild()->setData('uid',2) ;
-	        
-        	if( !$this->defaultView->model()->child('usersubscribe')->findChildBy("30",'username') )
-        	{
-		        $this->defaultView->model()->child('usersubscribe')->loadChild("5",'username') ;
-				$this->defaultView->model()->save() ;
-        	} 
-        }
+        $this->defaultView->model()->load(IdManager::fromSession()->currentId()->userId(),"uid") ;
 	}
 }
 

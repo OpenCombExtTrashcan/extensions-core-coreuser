@@ -1,6 +1,8 @@
 <?php
 namespace oc\ext\coreuser ;
 
+use jc\db\DB;
+
 use oc\base\FrontFrame;
 
 use jc\session\Session;
@@ -27,23 +29,21 @@ use jc\mvc\view\DataExchanger ;
  * @author gaojun
  *
  */
-class AllUser extends Controller
+class MyFriend extends Controller
 {
 	protected function init()
 	{
 		// 网页框架
 		$this->add(new FrontFrame()) ;
 
-		$this->createView("defaultView", "CoreUser.AllUser.html") ;
+		$this->createView("defaultView", "CoreUser.MyFriend.html") ;
 		
-		$this->aUserModel = Model::fromFragment('user', array(),true) ;
-		
-		$this->defaultView->setModel($this->aUserModel) ;
 	}
 	
 	public function process()
 	{
-		$this->aUserModel->load();
+		$oRs = Db::singleton()->query("SELECT t1.uid as friendid,t2.uid as uid,t3.username FROM coreuser_subscribe as t1 LEFT JOIN coreuser_subscribe as t2 on t1.uid=t2.subscribeid LEFT JOIN coreuser_user as t3 ON t1.uid = t3.uid where t2.uid = ".IdManager::fromSession()->currentId()->userId());
+		$this->defaultView->variables()->set("list",$oRs);
 	}
 }
 
