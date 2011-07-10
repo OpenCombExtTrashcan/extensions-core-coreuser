@@ -8,7 +8,7 @@ use jc\auth\IdManager;
 use jc\db\ExecuteException;
 use oc\mvc\controller\Controller ;
 use oc\mvc\model\db\Model;
-use jc\mvc\model\db\orm\ModelAssociationMap;
+use jc\mvc\model\db\orm\PrototypeAssociationMap;
 use jc\verifier\Email;
 use jc\verifier\Length;
 use jc\verifier\NotNull;
@@ -39,7 +39,7 @@ class Update extends Controller
 
 								
 		//当前登陆者信息
-        $aAssocMap = ModelAssociationMap::singleton() ;
+        $aAssocMap = PrototypeAssociationMap::singleton() ;
 		$aFragment = $aAssocMap->fragment('user',
 		       array(
 		            'info' ,

@@ -1,7 +1,7 @@
 <?php
 namespace oc\ext\coreuser ;
 
-use jc\mvc\model\db\orm\ModelAssociationMap;
+use jc\mvc\model\db\orm\PrototypeAssociationMap;
 
 use jc\db\DB ;
 use jc\db\PDODriver ;
@@ -14,7 +14,7 @@ class CoreUser extends Extension
 	{
 	    
     	    // 取得模型关系图的单件实例
-            $aAssocMap = ModelAssociationMap::singleton() ;
+            $aAssocMap = PrototypeAssociationMap::singleton() ;
     	    $aAssocMap->addOrm(
                 	array(
                 		'keys' => 'uid' ,
@@ -44,7 +44,8 @@ class CoreUser extends Extension
 								'bridge' => 'subscribe' ,
 								'model' => 'user',
 							) ,
-						),
+						),				
+						
                 	)
             ) ;
             
