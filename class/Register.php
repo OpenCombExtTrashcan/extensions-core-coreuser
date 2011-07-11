@@ -35,13 +35,13 @@ class Register extends Controller
 		$this->defaultView->addWidget( new Text("username","用户名"), 'username' );
 
 		$this->defaultView->addWidget( new Text("password","密码",Text::password), 'password' )
-						    ->addVerifier( Length::flyweight(6,40) ) ;
+						    ->addVerifier( Length::flyweight(array(6,40)) ) ;
 
 		$this->defaultView->addWidget( new Text("email","邮件"), 'info.email' )
 						    ->addVerifier( Email::singleton(), "用户名必须是email格式" ) ;
 
 		$this->defaultView->addWidget( new Text("username","姓名"), 'info.nickname' )
-						    ->addVerifier( Length::flyweight(6,40) ) ;
+						    ->addVerifier( Length::flyweight(array(6,40)) ) ;
 
 		$this->defaultView->addWidget ( new RadioGroup('sex'), 'info.sex' )
 					->createRadio('女','2')

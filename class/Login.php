@@ -39,7 +39,7 @@ class Login extends Controller
 		$this->defaultView->addWidget( new Text("username","用户名",'aarongao'), 'username' );
 						    
 		$this->defaultView->addWidget( new Text("password","密码",'6609889',Text::password), 'password' )
-						    ->addVerifier( Length::flyweight(6,40) ) ;
+						    ->addVerifier( Length::flyweight(array(6,40)) ) ;
         
 						    
 		$this->aUserModel = Model::fromFragment('user', array('info')) ;
