@@ -60,7 +60,7 @@ class Update extends Controller
 
 		$this->defaultView->addWidget( new Text("birthday","生日"), 'info.birthday' );
 						
-		$this->defaultView->addWidget ( new Select ( 'city', '选择城市', 1 ), 'info.city' )
+		$this->defaultView->addWidget ( new Select ( 'city', '选择城市'), 'info.city' )
 								->addOption ( "请选择", null, true)
 								->addOption ( "大连", "dl" )
 								->addOption ( "营口", "yk" )
@@ -70,10 +70,6 @@ class Update extends Controller
 	
 	public function process()
 	{
-		Relocater::locate("http://www.baidu.com", "xxxxx") ;
-		
-		return ;
-		
 		$userList = IdManager::fromSession();
         $this->defaultView->model()->load($userList->currentId()->userId(),"uid");
         

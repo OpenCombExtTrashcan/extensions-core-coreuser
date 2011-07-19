@@ -50,7 +50,7 @@ class Register extends Controller
 
 		$this->defaultView->addWidget( new Text("birthday","生日"), 'birthday' );
 						
-		$this->defaultView->addWidget ( new Select ( 'city', '选择城市', 1 ), 'city' )
+		$this->defaultView->addWidget ( new Select ( 'city', '选择城市'), 'city' )
 								->addOption ( "请选择", null, true)
 								->addOption ( "大连", "dl" )
 								->addOption ( "营口", "yk" )
