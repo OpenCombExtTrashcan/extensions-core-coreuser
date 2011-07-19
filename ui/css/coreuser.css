@@ -74,7 +74,7 @@
 .alluser{ overflow:hidden; zoom:1;}
 .alluser h4{ font-size:14px; font-weight:bold; color:#005eac; border-bottom:1px solid #ccc;padding-bottom:6px;margin-bottom:20px;}
 .alluser li{width:200px; padding:10px; float:left; display:inline; margin:0px; height:55px; margin:0 4px 10px 0;}
-.alluser_avatar{height:48px; width:48px; padding:1px; border:1px solid #ccc; display:block; float:left; margin-right:6px;}
+.alluser_avatar{height:48px; width:48px; overflow:hidden; padding:1px; border:1px solid #ccc; display:block; float:left; margin-right:6px;}
 .alluser_avatar img{ height:48px; width:48px;}
 .alluser_info{ float:left; height:50px; width:140px; overflow:hidden}
 .alluser_info h5{margin-bottom:14px; font-size:13px;}
