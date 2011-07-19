@@ -1,1 +1,7 @@
-fff
+.register{border:1px solid #ccc;padding:10px;}
+.register div{ margin:10px 0 0 0;}
+.register span{width:200px; line-height:20px; height:20px;vertical-align: middle; text-align:right; font-size:13px; font-weight:bold; display:block; float:left}
+.register input, .register select{margin-left:6px;}
+.regi_item input{width:200px; height:20px;padding:2px; border:1px solid #ddd;}
+.register .register_btn{margin:10px 0 10px 206px;width:84px; height:25px; font-size:16px; line-height:25px;cursor:pointer; background:#005eac; color:#fff; border:1px solid #024073}
+.sex input{margin-top:2px; margin-right:4px;}

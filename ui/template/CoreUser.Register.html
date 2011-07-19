@@ -4,40 +4,40 @@
 <msgqueue for="$theView" />
 
 
-<form action="/?c=register" method="post">
-	<div>
-		用户名：<widget id="username"/>
+<form action="/?c=register" method="post" class="register">
+	<div class="regi_item">
+		<span>用户名：</span><widget id="username"/>
 		<msgqueue for="$theView->widget('username')" />
 	</div>
 	
-	<div>
+	<div class="regi_item">
 		{* 显示 password 视图窗体 }
-		密　码：<widget id="password"/>
+		<span>密　码：</span><widget id="password"/>
 
 		{* 显示 password 窗体 的消息队列 }
 		<msgqueue for="$theView->widget('password')" />
 	</div>
 	
-	<div>
-		邮　件：<widget id="email"/>
+	<div class="regi_item">
+		<span>邮　件：</span><widget id="email"/>
 		<msgqueue for="$theView->widget('email')" />
 	</div>
 	
-	<div>
-		性　别：<widget id="sex:1"/> <widget id="sex:2"/>
+	<div class="sex">
+		<span>性　别：</span><widget id="sex:1"/> <widget id="sex:2"/>
 		<msgqueue for="$theView->widget('sex')" />
 	</div>
 	
-	<div>
-		生　日：<widget id="birthday"/>
+	<div class="regi_item">
+		<span>生　日：</span><widget id="birthday"/>
 		<msgqueue for="$theView->widget('birthday')" />
 	</div>
 	
-	<div>
-		城　市：<widget id="city"/>
+	<div class="regi_item">
+		<span>城　市：</span><widget id="city"/>
 		<msgqueue for="$theView->widget('city')" />
 	</div>
 	
-	<input type="submit" value="submit" />
+	<input type="submit" value="注　册" class="register_btn" />
 	
 </form>
