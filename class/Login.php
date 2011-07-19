@@ -33,15 +33,14 @@ class Login extends Controller
 		// 网页框架
 		$this->add(new FrontFrame()) ;
 
-		$this->createView("defaultView", "coreuser:CoreUser.Login.html",'jc\\mvc\\view\\FormView') ;
-		
+		$this->createFormView('Login') ;
+
 		// 为视图创建、添加窗体，并为窗体添加校验器
-		$this->defaultView->addWidget( new Text("username","用户名",'aarongao'), 'username' );
-						    
-		$this->defaultView->addWidget( new Text("password","密码",'6609889',Text::password), 'password' )
+		$this->viewLogin->addWidget( new Text("username","用户名",'aarongao'), 'username' );
+
+		$this->viewLogin->addWidget( new Text("password","密码",'6609889',Text::password), 'password' )
 						    ->addVerifier( Length::flyweight(array(6,40)) ) ;
-        
-						    
+
 		$this->aUserModel = Model::fromFragment('user', array('info')) ;
 		
 	}
@@ -61,34 +60,34 @@ class Login extends Controller
 		
 		//切换用户
 		//登陆
-	    if( $this->defaultView->isSubmit( $this->aParams ) )		 
+	    if( $this->viewLogin->isSubmit( $this->aParams ) )		 
 		{do{
 			// 加载 视图窗体的数据
-			$this->defaultView->loadWidgets( $this->aParams ) ;
+			$this->viewLogin->loadWidgets( $this->aParams ) ;
 			            	
 			// 校验 视图窗体的数据
-			if( !$this->defaultView->verifyWidgets() )
+			if( !$this->viewLogin->verifyWidgets() )
 			{
 				break ;
 			}
 				
 			if( !$this->aUserModel->load($this->aParams["username"],"username") )
 			{
-				$this->defaultView->createMessage( Message::failed, "用户名不存在:%s。", $this->aParams["username"] ) ;
+				$this->viewLogin->createMessage( Message::failed, "用户名不存在:%s。", $this->aParams["username"] ) ;
 				break ;
 			}
 
 			if( $this->aUserModel['password'] != $this->aParams["password"] )
 			{
-				$this->defaultView->createMessage( Message::failed, "密码错误。" ) ;
+				$this->viewLogin->createMessage( Message::failed, "密码错误。" ) ;
 				break ;
 			}
             		
 			// IdManager::fromSession()->clear() ;
 			IdManager::fromSession()->addId($aId) ;
 			
-			$this->defaultView->createMessage( Message::success, "登录成功。" ) ;
-			$this->defaultView->hideForm() ;
+			$this->viewLogin->createMessage( Message::success, "登录成功。" ) ;
+			$this->viewLogin->hideForm() ;
 			
 		} while(0) ; }
 

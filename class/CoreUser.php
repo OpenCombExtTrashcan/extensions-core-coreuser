@@ -94,6 +94,9 @@ class CoreUser extends Extension
 		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\MyFriend",'myfriend','') ;
 		
 		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\MessageAndQueuePrototype",'all_message_types') ;
+		
+		
+		$this->application()->accessRouter()->setDefaultController('myfriend') ;
 	}
 	
 }
