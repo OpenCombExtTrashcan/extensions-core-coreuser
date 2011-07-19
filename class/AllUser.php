@@ -31,14 +31,11 @@ class AllUser extends Controller
 {
 	protected function init()
 	{
-		// 网页框架
-		$this->add(new FrontFrame()) ;
-
-		$this->createView("defaultView", "CoreUser.AllUser.html") ;
+		$this->createFormView() ;
 		
 		$this->aUserModel = Model::fromFragment('user', array(),true) ;
 		
-		$this->defaultView->setModel($this->aUserModel) ;
+		$this->viewAllUser->setModel($this->aUserModel) ;
 	}
 	
 	public function process()

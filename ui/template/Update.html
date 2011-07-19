@@ -1,0 +1,37 @@
+{* 显示 当前视图 的消息队列 }
+<msgqueue for="$theView" />
+
+
+<form action="/?c=coreuser.update" method="post">
+	
+	<div>
+		{* 显示 password 视图窗体 }
+		密　码：<widget id="password"/>
+		
+		{* 显示 username 窗体 的消息队列 }
+		<msgqueue for="$theView->widget('password')" />
+	</div>
+	
+	<div>
+		邮　件：<widget id="email"/>
+		<msgqueue for="$theView->widget('email')" />
+	</div>
+	
+	<div>
+		性　别：<widget id="sex:1"/> <widget id="sex:2"/>
+		<msgqueue for="$theView->widget('sex')" />
+	</div>
+	
+	<div>
+		生　日：<widget id="birthday"/>
+		<msgqueue for="$theView->widget('birthday')" />
+	</div>
+	
+	<div>
+		城　市：<widget id="city"/>
+		<msgqueue for="$theView->widget('city')" />
+	</div>
+	
+	<input type="submit" value="submit" />
+	
+</form>

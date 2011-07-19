@@ -1,0 +1,5 @@
+<foreach for="$theModel->childIterator()" item="user">
+	
+			{= $user->data('username') } <a href="?c=coreuser.subscribe.create&uid={= $user->data('uid') }">关注</a><br/>
+			
+</foreach>

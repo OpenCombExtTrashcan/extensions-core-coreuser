@@ -30,7 +30,7 @@ class Login extends Controller
 {
 	protected function init()
 	{
-		$this->createFormView('Login') ;
+		$this->createFormView() ;
 
 		// 为视图创建、添加窗体，并为窗体添加校验器
 		$this->viewLogin->addWidget( new Text("username","用户名",'aarongao'), 'username' );
@@ -40,6 +40,7 @@ class Login extends Controller
 
 		$this->aUserModel = Model::fromFragment('user', array('info')) ;
 		
+				
 	}
 	
 	public function process()

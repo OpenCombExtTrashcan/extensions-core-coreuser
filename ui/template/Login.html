@@ -1,6 +1,6 @@
 {* 显示 当前视图 的消息队列 }
 <msgqueue for="$theView" />
-
+<if "is_object(\jc\auth\IdManager::fromSession()->currentId())">
 <div class="logined">
 	<div class="userInfo">
        	<a href="" class="avatar" title="更换头像" target="_blank"><img alt="" src="/platform/ui/images/viewimg/xshd01.jpg" /></a>
@@ -19,7 +19,7 @@
 			<input type="button" class="btn_register" value="退　出" />
      </div>
 </div>
-
+<else/>
 <div class="login">
 	<form action="/?c=login" method="post">
 		<ul>
@@ -46,3 +46,4 @@
 		</div>
 	</form>
 </div>
+</if>
