@@ -30,9 +30,6 @@ class Login extends Controller
 {
 	protected function init()
 	{
-		// 网页框架
-		$this->add(new FrontFrame()) ;
-
 		$this->createFormView('Login') ;
 
 		// 为视图创建、添加窗体，并为窗体添加校验器
