@@ -1,4 +1,6 @@
-.register {
+
+/*register*/
+.register,.alluser{
 	border:1px solid #ccc;
 	padding:20px;
 }
@@ -66,3 +68,10 @@
 	padding: 2px 15px;
 	text-align: left;
 }
+
+
+/*alluser*/
+.alluser{ overflow:hidden; zoom:1;}
+.alluser li{width:200px; padding:10px; float:left; display:inline; margin:0px; height:55px;}
+.alluser_avatar{height:48px; width:48px; padding:1px; border:1px solid #ccc; display:block; float:left; margin-right:4px;}
+.alluser_avatar img{ height:48px; width:48px;}
