@@ -29,7 +29,7 @@ class Index extends Controller
 {
 	protected function init()
 	{
-		$this->createView("viewIndex", "CoreUser.Subscribe.html",true) ;
+		$this->createView("Index", "CoreUser.Subscribe.html",true) ;
 		
 		$this->viewIndex->setModel( Model::fromFragment('subscribe',array("user"),true) ) ;
 	}
