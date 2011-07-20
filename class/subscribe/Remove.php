@@ -32,9 +32,6 @@ class Remove extends Controller
 {
 	protected function init()
 	{
-		// 网页框架
-		$this->add(new FrontFrame()) ;
-		
 		$this->model = Model::fromFragment('subscribe');
 	}
 	

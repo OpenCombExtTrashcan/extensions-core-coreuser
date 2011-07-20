@@ -13,8 +13,8 @@ class Switchuser extends Controller
 {
 	protected function init()
 	{
-		// 网页框架
-		$this->add(new FrontFrame()) ;
+		
+		
 	}
 
 	public function process()

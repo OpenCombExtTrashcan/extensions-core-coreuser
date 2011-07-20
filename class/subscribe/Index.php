@@ -29,17 +29,14 @@ class Index extends Controller
 {
 	protected function init()
 	{
-		// 网页框架
-		$this->add(new FrontFrame()) ;
+		$this->createView("viewIndex", "CoreUser.Subscribe.html",true) ;
 		
-		$this->createView("defaultView", "CoreUser.Subscribe.html",true) ;
-		
-		$this->defaultView->setModel( Model::fromFragment('subscribe',array("user"),true) ) ;
+		$this->viewIndex->setModel( Model::fromFragment('subscribe',array("user"),true) ) ;
 	}
 	
 	public function process()
 	{
-        $this->defaultView->model()->load(IdManager::fromSession()->currentId()->userId(),"uid") ;
+        $this->viewIndex->model()->load(IdManager::fromSession()->currentId()->userId(),"uid") ;
 	}
 }
 

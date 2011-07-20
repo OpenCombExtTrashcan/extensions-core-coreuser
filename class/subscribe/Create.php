@@ -31,22 +31,19 @@ class Create extends Controller
 {
 	protected function init()
 	{
-		// 网页框架
-		$this->add(new FrontFrame()) ;
-		
-		$this->createView("defaultView", "CoreUser.Subscribe.html",true) ;
+		$this->createView() ;
 	}
 	
 	public function process()
 	{
 		//buildChild
-        $this->defaultView->setModel( Model::fromFragment('subscribe') ) ;
+        $this->viewCreate->setModel( Model::fromFragment('subscribe') ) ;
         
-        if( !$this->defaultView->model()->load(array(IdManager::fromSession()->currentId()->userId(),$this->aParams->get("uid")),array("uid","subscribeid")) )
+        if( !$this->viewCreate->model()->load(array(IdManager::fromSession()->currentId()->userId(),$this->aParams->get("uid")),array("uid","subscribeid")) )
         {
-        	$this->defaultView->model()->setData('uid',IdManager::fromSession()->currentId()->userId()) ;
-        	$this->defaultView->model()->setData('subscribeid',$this->aParams->get("uid")) ;
-			$this->defaultView->model()->save() ;
+        	$this->viewCreate->model()->setData('uid',IdManager::fromSession()->currentId()->userId()) ;
+        	$this->viewCreate->model()->setData('subscribeid',$this->aParams->get("uid")) ;
+			$this->viewCreate->model()->save() ;
         	Relocater::locate("/?c=coreuser.alluser", "关注成功") ;
         }else{
         	Relocater::locate("/?c=coreuser.alluser", "已经关注") ;

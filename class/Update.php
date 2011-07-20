@@ -29,13 +29,10 @@ class Update extends Controller
 {
 	protected function init()
 	{
-		// 网页框架
-		$this->add(new FrontFrame()) ;
-		
 		
 		$aIdMgr = IdManager::fromSession() ;
 
-		$this->createView("defaultView", "CoreUser.Update.html",'jc\\mvc\\view\\FormView') ;
+		$this->createFormView() ;
 
 								
 		//当前登陆者信息
@@ -45,22 +42,22 @@ class Update extends Controller
 		            'info' ,
 		       )
 		) ;
-		$this->defaultView->setModel( Model::fromFragment('user',array('info')) ) ;
+		$this->viewUpdate->setModel( Model::fromFragment('user',array('info')) ) ;
             		
             		
 		// 为视图创建、添加窗体，并为窗体添加校验器
-		$this->defaultView->addWidget( new Text("password","密码","",Text::password), 'password' );
+		$this->viewUpdate->addWidget( new Text("password","密码","",Text::password), 'password' );
 						    
-		$this->defaultView->addWidget( new Text("email","邮件"), 'info.email' )
+		$this->viewUpdate->addWidget( new Text("email","邮件"), 'info.email' )
 						    ->addVerifier( Email::singleton(), "用户名必须是email格式" ) ;
 
-		$this->defaultView->addWidget ( new RadioGroup('sex'), 'info.sex')
+		$this->viewUpdate->addWidget ( new RadioGroup('sex'), 'info.sex')
 					->createRadio('女','2')
 					->createRadio('男','1',true);
 
-		$this->defaultView->addWidget( new Text("birthday","生日"), 'info.birthday' );
+		$this->viewUpdate->addWidget( new Text("birthday","生日"), 'info.birthday' );
 						
-		$this->defaultView->addWidget ( new Select ( 'city', '选择城市'), 'info.city' )
+		$this->viewUpdate->addWidget ( new Select ( 'city', '选择城市'), 'info.city' )
 								->addOption ( "请选择", null, true)
 								->addOption ( "大连", "dl" )
 								->addOption ( "营口", "yk" )
@@ -71,36 +68,36 @@ class Update extends Controller
 	public function process()
 	{
 		$userList = IdManager::fromSession();
-        $this->defaultView->model()->load($userList->currentId()->userId(),"uid");
+        $this->viewUpdate->model()->load($userList->currentId()->userId(),"uid");
         
-        $this->defaultView->exchangeData(DataExchanger::MODEL_TO_WIDGET) ;
+        $this->viewUpdate->exchangeData(DataExchanger::MODEL_TO_WIDGET) ;
         
         
         
-	    if( $this->defaultView->isSubmit( $this->aParams ) )		 
+	    if( $this->viewUpdate->isSubmit( $this->aParams ) )		 
 		{
-//            $this->defaultView->widget('username')->setValue() ;
-//            $this->defaultView->widget('username')->setValueFromValue() ;
+//            $this->viewUpdate->widget('username')->setValue() ;
+//            $this->viewUpdate->widget('username')->setValueFromValue() ;
 		        
-		        $this->defaultView->model()->setData('registerTime',strtotime("now")) ;
+		        $this->viewUpdate->model()->setData('registerTime',strtotime("now")) ;
         
             	// 加载 视图窗体的数据
-            	$this->defaultView->loadWidgets( $this->aParams ) ;
+            	$this->viewUpdate->loadWidgets( $this->aParams ) ;
             	
             	// 校验 视图窗体的数据
-            	if( $this->defaultView->verifyWidgets() )
+            	if( $this->viewUpdate->verifyWidgets() )
             	{
             		
-            		$this->defaultView->exchangeData(DataExchanger::WIDGET_TO_MODEL) ;
-            		if($this->defaultView->model()->uid)
+            		$this->viewUpdate->exchangeData(DataExchanger::WIDGET_TO_MODEL) ;
+            		if($this->viewUpdate->model()->uid)
             		{
 	            		try {
-	            			$this->defaultView->model()->save();
+	            			$this->viewUpdate->model()->save();
 	            		} catch (ExecuteException $e) {
 	            			
 	            			if($e->isDuplicate())
 	            			{
-	            				$this->defaultView->messageQueue()->add(
+	            				$this->viewUpdate->messageQueue()->add(
 			            			new Message( Message::error, "用户重复" )
 			            		) ;
 	            			}
