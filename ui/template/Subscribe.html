@@ -1,5 +1,19 @@
+
+<css src="coreuser.css" />
+
+<div class="alluser">
+<h4>我的关注</h4>
+<ul>
 <foreach for="$theModel->childIterator()" item="row">
-	
-			{= $row->child('user')->data('username') }  <a href="?c=coreuser.subscribe.remove&uid={= $row->child('user')->data('uid') }">删除</a> <br/>
-			
+<li>	
+		<a href="" class="alluser_avatar">
+			<img src="/extensions/coreuser/ui/images/avatar.jpg" alt="" />
+		</a>
+		<div class="alluser_info">
+			<h5><a href="">{= $row->child('user')->data('username') }</a></h5>
+			<p><a href="?c=coreuser.subscribe.remove&uid={= $row->child('user')->data('uid') }">取消关注</a></p>
+		</div>
+</li>			
 </foreach>
+</ul>
+</div>
