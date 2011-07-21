@@ -11,7 +11,7 @@
 		</a>
 		<div class="alluser_info">
 			<h5><a href="">{= $row->child('user')->data('username') }</a></h5>
-			<p><a href="?c=coreuser.subscribe.remove&uid={= $row->child('user')->data('uid') }">取消关注</a></p>
+			<p><a class="cancelConcern" href="?c=coreuser.subscribe.remove&uid={= $row->child('user')->data('uid') }">取消关注</a></p>
 		</div>
 </li>			
 </foreach>
