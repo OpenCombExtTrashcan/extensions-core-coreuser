@@ -5,6 +5,7 @@
 
 
 <form action="/?c=register" method="post" class="register">
+	<h4>注册新用户</h4>
 	<div>
 		<strong>用户名：</strong>
 		<span><widget id="username" class="regi_text"/></span>
@@ -28,7 +29,7 @@
 	
 	<div>
 		<strong>性　别：</strong>
-		<span class="sex"><widget id="sex:1"/> <widget id="sex:2" attr.="female"/></span>
+		<span class="sex"><widget id="sex:1"/> <widget id="sex:2" attr.class="female"/></span>
 		<msgqueue for="$theView->widget('sex')" />
 	</div>
 	

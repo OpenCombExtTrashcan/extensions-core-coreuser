@@ -1,37 +1,43 @@
+<css src="coreuser.css" />
 {* 显示 当前视图 的消息队列 }
 <msgqueue for="$theView" />
 
 
-<form action="/?c=coreuser.update" method="post">
-	
+<form action="/?c=coreuser.update" method="post" class="update">
+	<h4>修改资料</h4>
 	<div>
 		{* 显示 password 视图窗体 }
-		密　码：<widget id="password"/>
+		<strong>密　码：</strong>
+		<span><widget id="password" class="update_text"/></span>
 		
 		{* 显示 username 窗体 的消息队列 }
 		<msgqueue for="$theView->widget('password')" />
 	</div>
 	
 	<div>
-		邮　件：<widget id="email"/>
+		<strong>邮　件：</strong>
+		<span><widget id="email" class="update_text"/></span>
 		<msgqueue for="$theView->widget('email')" />
 	</div>
 	
 	<div>
-		性　别：<widget id="sex:1"/> <widget id="sex:2"/>
+		<strong>性　别：</strong>
+		<span class="sex"><widget id="sex:1"/> <widget id="sex:2" attr.class="female"/></span>
 		<msgqueue for="$theView->widget('sex')" />
 	</div>
 	
 	<div>
-		生　日：<widget id="birthday"/>
+		<strong>生　日：</strong>
+		<span><widget id="birthday" class="update_text"/></span>
 		<msgqueue for="$theView->widget('birthday')" />
 	</div>
 	
 	<div>
-		城　市：<widget id="city"/>
+		<strong>城　市：</strong>
+		<span><widget id="city"/></span>
 		<msgqueue for="$theView->widget('city')" />
 	</div>
 	
-	<input type="submit" value="submit" />
+	<input type="submit" value="修改" class="update_btn" />
 	
 </form>
