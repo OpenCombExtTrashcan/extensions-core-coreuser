@@ -4,6 +4,8 @@ namespace oc\ext\coreuser;
 use oc\ext\Extension;
 use oc\base\FrontFrame;
 use jc\auth\IdManager;
+use jc\session\Session;
+use jc\auth\Id;
 use jc\db\ExecuteException;
 use oc\mvc\controller\Controller;
 use oc\mvc\model\db\Model;
@@ -12,6 +14,7 @@ use jc\message\Message;
 use jc\mvc\view\DataExchanger;
 use jc\verifier\NotEmpty;
 use jc\lang\Exception;
+
 
 /**
  * 上传用户头像
@@ -65,6 +68,18 @@ class Face extends Controller
 					{
 						$this->viewFace->hideForm ();
 						$this->messageQueue ()->create ( Message::success, "照片提交完成" );
+						
+						//刷新ID
+						$aId = new Id($this->viewFace->model (),array(
+							'id' => 'uid' ,
+							'username' => 'username' ,
+							'nickname' => 'info.nickname' ,
+							'lastlogintime' => 'lastlogintime' ,
+							'lastloginip' => 'lastloginip' ,
+							'activetime' => 'activetime' ,
+							'activeip' => 'activeip' ,
+						)) ;
+						IdManager::fromSession()->addId($aId) ;
 					}
 					else
 					{
@@ -72,7 +87,7 @@ class Face extends Controller
 					}
 				} catch ( Exception $e )
 				{
-					$this->messageQueue ()->create ( Message::error, "照片提交失败" );
+//					$this->messageQueue ()->create ( Message::error, "照片提交失败" );
 				}
 			
 			} while ( 0 );

@@ -8,11 +8,27 @@ use jc\lang\Exception;
 
 class FaceWidget extends Widget {
 	
-	public function __construct($sId, $sTitle = null, IModel $aModel , IView $aView = null) {
+	public function __construct(IModel $aModel ,$sTemplate = null, $sId, $sTitle = null,  IView $aView = null) {
 		
 		$this->setModel($aModel);
 		
-		parent::__construct ( $sId, 'coreuser:FaceWidget.html', $sTitle, $aView );
+		if($sTemplate === null)
+		{
+			$sTemplate = 'coreuser:FaceWidget.html';
+		}
+		
+		parent::__construct ( $sId, $sTemplate, $sTitle, $aView );
+	}
+	
+	//获取当前
+	static function myFaceFactory()
+	{
+		
+	}
+	
+	static function faceFactory()
+	{
+		
 	}
 	
 	/**
