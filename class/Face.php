@@ -26,7 +26,7 @@ class Face extends Controller
 {
 	protected function init()
 	{
-		$aIdMgr = IdManager::fromSession ();
+//		$aIdMgr = IdManager::fromSession ();
 		
 		$this->createFormView ( 'Face' );
 		//当前登陆者信息
@@ -47,8 +47,7 @@ class Face extends Controller
 		$sFacePath = CoreUser::getFaceFolder ()->path () . '/' . $this->viewFace->model ()->data ( 'info.face' );
 		$this->viewFace->variables ()->set ( 'sFacePath', $sFacePath );
 			
-		
-			$this->viewFace->exchangeData ( DataExchanger::MODEL_TO_WIDGET );
+		$this->viewFace->exchangeData ( DataExchanger::MODEL_TO_WIDGET );
 		
 		if ($this->viewFace->isSubmit ( $this->aParams ))
 		{

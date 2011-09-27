@@ -3,7 +3,7 @@
 <if "is_object($aCurrentId=\jc\auth\IdManager::fromSession()->currentId())">
 <div class="logined">
 	<div class="userInfo">
-       	<widget ins="new oc\ext\coreuser\FaceWidget('','',$aCurrentId->userDataModel())"/><!-- <img alt="" src="/platform/ui/images/viewimg/xshd01.jpg" /> -->
+       	<widget ins="oc\ext\coreuser\FaceWidget::mine()"/><!-- <img alt="" src="/platform/ui/images/viewimg/xshd01.jpg" /> -->
            <div class="text">
 				<h5><a href="">User</a></h5>
 				<p>
