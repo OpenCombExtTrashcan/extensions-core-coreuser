@@ -1,9 +1,9 @@
 {* 显示 当前视图 的消息队列 }
 <msgqueue for="$theView" />
-<if "is_object(\jc\auth\IdManager::fromSession()->currentId())">
+<if "is_object($aCurrentId=\jc\auth\IdManager::fromSession()->currentId())">
 <div class="logined">
 	<div class="userInfo">
-       	<a href="" class="avatar" title="更换头像" target="_blank"><img alt="" src="/platform/ui/images/viewimg/xshd01.jpg" /></a>
+       	<widget ins="oc\ext\coreuser\FaceWidget::mine()"/><!-- <img alt="" src="/platform/ui/images/viewimg/xshd01.jpg" /> -->
            <div class="text">
 				<h5><a href="">User</a></h5>
 				<p>

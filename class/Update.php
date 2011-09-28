@@ -52,8 +52,8 @@ class Update extends Controller
 						    ->addVerifier( Email::singleton(), "用户名必须是email格式" ) ;
 
 		$this->viewUpdate->addWidget ( new RadioGroup('sex'), 'info.sex')
-					->createRadio('女','2')
-					->createRadio('男','1',true);
+					->createRadio(null,'女','2')
+					->createRadio(null,'男','1',true);
 
 		$this->viewUpdate->addWidget( new Text("birthday","生日"), 'info.birthday' );
 						

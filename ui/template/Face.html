@@ -1,0 +1,12 @@
+<msgqueue for="$theController" />
+<if "is_object(\jc\auth\IdManager::fromSession()->currentId())">
+	<form id="FaceForm" enctype="multipart/form-data" method='post'>
+		<div>
+			<img src="{=$sFacePath}" />
+		</div>
+		<label for='faceupdate'>上传照片</label><widget id="faceupdate"/><br />
+		
+		<input type='submit' value='提交照片'/>
+	</form>
+</if>
+<views/>

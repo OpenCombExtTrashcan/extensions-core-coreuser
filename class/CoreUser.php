@@ -5,7 +5,7 @@ use jc\mvc\model\db\orm\PrototypeAssociationMap;
 
 use jc\db\DB ;
 use jc\db\PDODriver ;
-
+use jc\fs\FileSystem;
 use oc\ext\Extension;
 
 class CoreUser extends Extension
@@ -15,7 +15,6 @@ class CoreUser extends Extension
 		// 定义ORM
         $this->defineOrm(PrototypeAssociationMap::singleton()) ;
             
-		
 		///////////////////////////////////////
 		// 向系统添加控制器
 		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\Register",'register','') ;
@@ -28,11 +27,19 @@ class CoreUser extends Extension
 		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\Switchuser",'switch') ;
 		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\AllUser",'alluser') ;
 		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\MyFriend",'myfriend','') ;
-		
+		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\Face",'coreuser.face','') ;
 		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\MessageAndQueuePrototype",'all_message_types') ;
 		
-		
 		$this->application()->accessRouter()->setDefaultController('myfriend') ;
+	}
+	
+	static public function getFaceFolder()
+	{
+		if(!$updateFolder = Extension::retraceExtension()->metainfo()->publicDataFolder()->findFolder('face'))
+		{
+			$updateFolder = Extension::retraceExtension()->metainfo()->publicDataFolder()->createFolder('face' , FileSystem::CREATE_ONLY_OBJECT);
+		}
+		return $updateFolder;
 	}
 	
 	
@@ -67,7 +74,7 @@ class CoreUser extends Extension
 								'bridge' => 'subscribe' ,
 								'model' => 'user',
 							) ,
-						),				
+						),
 						
                 	)
             ) ;
