@@ -1,6 +1,14 @@
 <?php
 namespace oc\ext\coreuser ;
 
+use jc\mvc\controller\Relocater;
+
+use jc\mvc\view\View;
+
+use jc\mvc\controller\WebpageFrame;
+
+use jc\mvc\view\Webpage;
+
 use oc\base\FrontFrame;
 use jc\session\Session;
 use jc\auth\IdManager;
@@ -87,8 +95,10 @@ class Login extends Controller
 			$this->viewLogin->createMessage( Message::success, "登录成功。" ) ;
 			$this->viewLogin->hideForm() ;
 			
+			Relocater::locate("/?c=microblog.index", "成功",0);
+			
 		} while(0) ; }
-
+        
 	}
 }
 

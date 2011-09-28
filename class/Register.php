@@ -26,11 +26,7 @@ class Register extends Controller
 {
 	protected function init()
 	{
-		
-		
-		
 		$this->createFormView() ;
-		
 		
 		// 为视图创建、添加窗体，并为窗体添加校验器
 		$this->viewRegister->addWidget( new Text("username","用户名"), 'username' );
@@ -44,10 +40,9 @@ class Register extends Controller
 		$this->viewRegister->addWidget( new Text("username","姓名"), 'info.nickname' )
 						    ->addVerifier( Length::flyweight(array(6,40)) ) ;
 
-		$this->viewRegister->addWidget ( new RadioGroup('sex'), 'info.sex' )
-					->createRadio('女','2')
-					->createRadio('男','1')
-					->createRadio('保密','0',true) ;
+		$this->viewRegister->addWidget ( new RadioGroup('sex',""), 'info.sex' )
+					->createRadio(null,'女','2')
+					->createRadio(null,'男','1',true);
 
 		$this->viewRegister->addWidget( new Text("birthday","生日"), 'birthday' );
 						
@@ -56,7 +51,7 @@ class Register extends Controller
 								->addOption ( "大连", "dl" )
 								->addOption ( "营口", "yk" )
 						->addVerifier( NotEmpty::singleton (), "请选择城市" ) ;
-
+						
         $this->viewRegister->setModel( Model::fromFragment('user',array('info')) ) ;
 	}
 	
@@ -79,7 +74,7 @@ class Register extends Controller
             		$this->viewRegister->model()->save() ;
             		$this->viewRegister->createMessage( Message::success, "注册成功！" ) ;
             		
-            		$this->viewRegister->hideForm() ;
+            		$this->viewRegister->model()->setData('success',"1") ;
             			
             	} catch (ExecuteException $e) {
             			
