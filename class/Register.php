@@ -52,6 +52,8 @@ class Register extends Controller
 								->addOption ( "营口", "yk" )
 						->addVerifier( NotEmpty::singleton (), "请选择城市" ) ;
 						
+		$this->viewRegister->addWidget( new Text("info","介绍"), 'info.info' );
+						
         $this->viewRegister->setModel( Model::fromFragment('user',array('info')) ) ;
 	}
 	

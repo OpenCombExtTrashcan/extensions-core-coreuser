@@ -36,6 +36,7 @@ class AllUser extends Controller
 		$this->aUserModel = Model::fromFragment('user', array(),true) ;
 		
 		$this->viewAllUser->setModel($this->aUserModel) ;
+		
 	}
 	
 	public function process()

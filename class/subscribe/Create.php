@@ -44,9 +44,9 @@ class Create extends Controller
         	$this->viewCreate->model()->setData('uid',IdManager::fromSession()->currentId()->userId()) ;
         	$this->viewCreate->model()->setData('subscribeid',$this->aParams->get("uid")) ;
 			$this->viewCreate->model()->save() ;
-        	Relocater::locate("/?c=coreuser.alluser", "关注成功") ;
+        	Relocater::locate("/?c=microblog.user", "关注成功") ;
         }else{
-        	Relocater::locate("/?c=coreuser.alluser", "已经关注") ;
+        	Relocater::locate("/?c=microblog.user", "已经关注") ;
         }
 	}
 }

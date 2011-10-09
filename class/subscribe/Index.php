@@ -1,6 +1,8 @@
 <?php
 namespace oc\ext\coreuser\subscribe ;
 
+use jc\mvc\view\widget\Paginator;
+
 use jc\auth\IdManager;
 
 use oc\base\FrontFrame;
@@ -31,12 +33,27 @@ class Index extends Controller
 	{
 		$this->createView("Index", "Subscribe.html",true) ;
 		
-		$this->viewIndex->setModel( Model::fromFragment('subscribe',array("user"),true) ) ;
+		$this->viewIndex->addWidget(new Paginator("paginator",$this->aParams))->setPerPageCount(10);
+		
+		$this->viewIndex->setModel( Model::fromFragment('subscribe',array("user"=>array("info")),true) ) ;
 	}
 	
 	public function process()
 	{
         $this->viewIndex->model()->load(IdManager::fromSession()->currentId()->userId(),"uid") ;
+        
+        $model = Model::fromFragment('coreuser:subscribe');
+        $model -> load(IdManager::fromSession()->currentId()->userId(),"uid");
+        $this->viewIndex->model()->setData("gz",$model->totalCount());
+        
+        $model = Model::fromFragment('coreuser:subscribe');
+        $model -> load(IdManager::fromSession()->currentId()->userId(),"subscribeid");
+        $this->viewIndex->model()->setData("fs",$model->totalCount());
+        
+        $model = Model::fromFragment('microblog:microblog');
+        $model -> load(IdManager::fromSession()->currentId()->userId(),"uid");
+        $this->viewIndex->model()->setData("wb",$model->totalCount());
+        
 	}
 }
 
