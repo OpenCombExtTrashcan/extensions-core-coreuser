@@ -46,6 +46,14 @@ class Login extends Controller
 	
 	public function process()
 	{
+	    //最新列表
+	    $blogModel = Model::fromFragment('microblog:microblog', array('userto'=>array("info"),'forward'=>array('userto')), true);
+	    $blogModel->criteria()->orders()->add("time",false) ;
+	    $blogModel->criteria()->setLimit("3");
+    	$blogModel->load();  
+    	$this->viewLogin->setModel($blogModel);
+	    
+	    
 		$aId = new Id($this->aUserModel,array(
 				'id' => 'uid' ,
 				'username' => 'username' ,

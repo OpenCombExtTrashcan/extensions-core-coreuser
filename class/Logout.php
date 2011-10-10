@@ -1,6 +1,8 @@
 <?php
 namespace oc\ext\coreuser ;
 
+use jc\mvc\controller\Relocater;
+
 use oc\base\FrontFrame;
 use jc\auth\IdManager;
 use jc\message\Message;
@@ -34,8 +36,11 @@ class Logout extends Controller
 			$this->createMessage(Message::notice,"正在以游客的身份访问。") ;
 		}
 		
+		
 		// 仅仅显示消息队列
 		$this->renderMessageQueue() ;
+		
+		Relocater::locate("/?c=login", "成功",0);
 	}
 
 }
