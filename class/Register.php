@@ -115,6 +115,7 @@ class Register extends Controller
             		
             	// 注册时间
             	$this->viewRegister->model()->setData('registerTime',time()) ;
+            	$this->viewRegister->model()->setData('password',md5($this->aParams->get("password"))) ;
             		
             	try {
             		$this->viewRegister->model()->save() ;

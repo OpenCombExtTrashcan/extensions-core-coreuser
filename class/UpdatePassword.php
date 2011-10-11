@@ -35,7 +35,7 @@ Class UpdatePassword extends Controller
 		$this->createFormView() ;
 
 								
-		//当前登陆者信息
+		//当前登录者信息
         $aAssocMap = PrototypeAssociationMap::singleton() ;
 		$aFragment = $aAssocMap->fragment('user',
 		       array(
@@ -74,6 +74,7 @@ Class UpdatePassword extends Controller
             	{
             		
             		$this->viewUpdatePassword->exchangeData(DataExchanger::WIDGET_TO_MODEL) ;
+            	    $this->viewUpdatePassword->model()->setData('password',md5($this->aParams->get("password"))) ;
             		if($this->viewUpdatePassword->model()->uid)
             		{
 	            		try {

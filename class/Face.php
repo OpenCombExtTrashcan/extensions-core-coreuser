@@ -29,7 +29,7 @@ class Face extends Controller
 //		$aIdMgr = IdManager::fromSession ();
 		
 		$this->createFormView ( 'Face' );
-		//当前登陆者信息
+		//当前登录者信息
 		$this->viewFace->setModel ( Model::fromFragment ( 'user', array ('info' ) ) );
 		
 		$this->faceupdate = new File ( 'faceupdate', '照片上传', CoreUser::getFaceFolder () );

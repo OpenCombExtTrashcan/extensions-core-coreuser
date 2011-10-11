@@ -37,7 +37,7 @@ Class Update extends Controller
 		$this->createFormView() ;
 
 								
-		//当前登陆者信息
+		//当前登录者信息
         $aAssocMap = PrototypeAssociationMap::singleton() ;
 		$aFragment = $aAssocMap->fragment('user',
 		       array(
@@ -232,6 +232,9 @@ Class Update extends Controller
 	
 	public function process()
 	{
+	    
+        $this->requireLogined();
+        
 		$userList = IdManager::fromSession();
         $this->viewUpdate->model()->load($userList->currentId()->userId(),"uid");
         

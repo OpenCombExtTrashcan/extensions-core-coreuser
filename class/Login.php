@@ -23,7 +23,7 @@ use jc\message\Message ;
 use jc\mvc\view\DataExchanger ;
 
 /**
- * 用户登陆
+ * 用户登录
  * Enter description here ...
  * @author gaojun
  *
@@ -35,9 +35,9 @@ class Login extends Controller
 		$this->createFormView() ;
 
 		// 为视图创建、添加窗体，并为窗体添加校验器
-		$this->viewLogin->addWidget( new Text("username","用户名",'aarongao'), 'username' );
+		$this->viewLogin->addWidget( new Text("username","用户名",''), 'username' );
 
-		$this->viewLogin->addWidget( new Text("password","密码",'6609889',Text::password), 'password' )
+		$this->viewLogin->addWidget( new Text("password","密码",'',Text::password), 'password' )
 						    ->addVerifier( Length::flyweight(array(6,40)) ) ;
 
 		$this->aUserModel = Model::fromFragment('user', array('info')) ;
@@ -66,7 +66,7 @@ class Login extends Controller
 			
 		
 		//切换用户
-		//登陆
+		//登录
 	    if( $this->viewLogin->isSubmit( $this->aParams ) )		 
 		{do{
 			// 加载 视图窗体的数据
@@ -84,7 +84,7 @@ class Login extends Controller
 				break ;
 			}
 
-			if( $this->aUserModel['password'] != $this->aParams["password"] )
+			if( $this->aUserModel['password'] != md5($this->aParams["password"]) )
 			{
 				$this->viewLogin->createMessage( Message::failed, "密码错误。" ) ;
 				break ;
