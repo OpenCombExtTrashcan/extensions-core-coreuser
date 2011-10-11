@@ -36,7 +36,7 @@ class Login extends Controller
 
 		// 为视图创建、添加窗体，并为窗体添加校验器
 		$this->viewLogin->addWidget( new Text("username","用户名",''), 'username' );
-
+						    
 		$this->viewLogin->addWidget( new Text("password","密码",'',Text::password), 'password' )
 						    ->addVerifier( Length::flyweight(array(6,40)) ) ;
 
