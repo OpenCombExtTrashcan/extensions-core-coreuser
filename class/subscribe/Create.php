@@ -37,6 +37,8 @@ class Create extends Controller
 	public function process()
 	{
 		//buildChild
+        $this->requireLogined();
+        
         $this->viewCreate->setModel( Model::fromFragment('subscribe') ) ;
         
         if( !$this->viewCreate->model()->load(array(IdManager::fromSession()->currentId()->userId(),$this->aParams->get("uid")),array("uid","subscribeid")) )
