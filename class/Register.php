@@ -29,9 +29,9 @@ class Register extends Controller
 		$this->createFormView() ;
 		
 		// 为视图创建、添加窗体，并为窗体添加校验器
-		$this->viewRegister->addWidget( new Text("username","用户名"), 'username' );
+		$this->viewRegister->addWidget( new Text("username","用户名",""), 'username' );
 
-		$this->viewRegister->addWidget( new Text("password","密码",Text::password), 'password' )
+		$this->viewRegister->addWidget( new Text("password","密码","",Text::password), 'password' )
 						    ->addVerifier( Length::flyweight(array(6,40)) ) ;
 
 		$this->viewRegister->addWidget( new Text("email","邮件"), 'info.email' )
