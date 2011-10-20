@@ -38,6 +38,8 @@ class MyFriend extends Controller
 	
 	public function process()
 	{
+		$this->requireLogined ( '请先登录' );
+
 		$oRs = Db::singleton()->query("SELECT t1.uid as friendid,t2.uid as uid,t3.username FROM coreuser_subscribe as t1 LEFT JOIN coreuser_subscribe as t2 on t1.uid=t2.subscribeid LEFT JOIN coreuser_user as t3 ON t1.uid = t3.uid where t2.uid = ".IdManager::fromSession()->currentId()->userId());
 		
 		$this->viewMyFriend->variables()->set("list",$oRs);
