@@ -96,7 +96,7 @@ class Login extends Controller
 			$this->viewLogin->createMessage( Message::success, "登录成功。" ) ;
 			$this->viewLogin->hideForm() ;
 			
-			Relocater::locate("/?c=microblog.index", "成功",0);
+			Relocater::locate("?c=microblog.index", "成功",0);
 			
 		} while(0) ; }
 		

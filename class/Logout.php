@@ -40,7 +40,7 @@ class Logout extends Controller
 		// 仅仅显示消息队列
 		$this->renderMessageQueue() ;
 		
-		Relocater::locate("/?c=login", "成功",0);
+		Relocater::locate("?c=login", "成功",0);
 	}
 
 }

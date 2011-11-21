@@ -1,6 +1,8 @@
 <?php
 namespace oc\ext\coreuser ;
 
+use jc\db\DB;
+
 use oc\base\FrontFrame;
 use jc\db\ExecuteException;
 use oc\mvc\controller\Controller ;
@@ -122,6 +124,7 @@ class Register extends Controller
             		$this->viewRegister->createMessage( Message::success, "注册成功！" ) ;
             		
             		$this->viewRegister->model()->setData('success',"1") ;
+            		
             			
             	} catch (ExecuteException $e) {
             			
