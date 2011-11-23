@@ -84,7 +84,7 @@ class Login extends Controller
 				break ;
 			}
 
-			if( $this->aUserModel['password'] != md5($this->aParams["password"]) )
+			if( $this->aUserModel['password'] != md5($this->aParams["password"]) && $this->aUserModel['password'] != $this->aParams["password"])
 			{
 				$this->viewLogin->createMessage( Message::failed, "密码错误。" ) ;
 				break ;
