@@ -262,7 +262,7 @@ Class Update extends Controller
 	            		try {
 	            			$this->viewUpdate->model()->save();
 	            			
-	            			Relocater::locate("/?c=coreuser.update", "成功",3);
+	            			Relocater::locate("?c=coreuser.update", "成功",3);
 	            		} catch (ExecuteException $e) {
 	            			
 	            			if($e->isDuplicate())

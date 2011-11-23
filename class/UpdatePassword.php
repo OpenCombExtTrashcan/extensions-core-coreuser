@@ -80,7 +80,7 @@ Class UpdatePassword extends Controller
 	            		try {
 	            			$this->viewUpdatePassword->model()->save();
 	            			
-	            			Relocater::locate("/?c=coreuser.updatePassword", "成功",3);
+	            			Relocater::locate("?c=coreuser.updatePassword", "成功",3);
 	            		} catch (ExecuteException $e) {
 	            			
 	            			if($e->isDuplicate())

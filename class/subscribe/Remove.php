@@ -42,7 +42,7 @@ class Remove extends Controller
 		
 		if($this->model->delete())
 		{
-		    Relocater::locate("/?c=coreuser.subscribe.index", "删除成功") ;
+		    Relocater::locate("?c=coreuser.subscribe.index", "删除成功") ;
 		}
 	}
 }

@@ -81,7 +81,7 @@ Class UpdateFice extends Controller
 						)) ;
 						IdManager::fromSession()->addId($aId) ;
 						
-						Relocater::locate("/?c=coreuser.updateFice", "成功",3);
+						Relocater::locate("?c=coreuser.updateFice", "成功",3);
 					}
 					else
 					{
