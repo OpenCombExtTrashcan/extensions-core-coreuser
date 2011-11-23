@@ -19,6 +19,7 @@ class CoreUser extends Extension
 		// 向系统添加控制器
 		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\Register",'register','') ;
 		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\Login",'login','') ;
+		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\IsLogin",'islogin','') ;
 		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\Logout",'logout','') ;
 		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\Update",'update') ;
 		$this->application()->accessRouter()->addController("oc\\ext\\coreuser\\UpdateFice",'updateFice') ;
